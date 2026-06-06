@@ -1,0 +1,1170 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PDF Forge" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>تحويل صورة إلى PDF مجاناً | بدون رفع ملفات | PDF Forge</title>
+   <link rel="icon" type="image/png" href="favicon-32x32.png">
+  <meta name="description" content="حوّل أي صورة PNG أو JPG إلى PDF مجاناً في ثوانٍ — يعمل مباشرةً في المتصفح بدون رفع ملفاتك إلى الإنترنت." />
+  <meta name="keywords" content="تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, convert image to pdf, pdf converter free" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="تحويل صورة إلى PDF مجاناً — PDF Forge" />
+  <meta property="og:description" content="أداة مجانية تحوّل صورك إلى PDF في ثوانٍ، تعمل بالكامل على جهازك." />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"PDF Forge","applicationCategory":"UtilitiesApplication","operatingSystem":"Web, Android, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0d1117;
+      --ink2:    #1c2430;
+      --slate:   #3d4f63;
+      --muted:   #8494a7;
+      --line:    #dde3eb;
+      --surf:    #f4f7fb;
+      --white:   #ffffff;
+      --accent:  #2563eb;
+      --accent2: #1d4ed8;
+      --green:   #059669;
+      --red:     #dc2626;
+      --gold:    #f59e0b;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.07);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 20px 40px rgba(0,0,0,.1);
+      --r: 14px;
+      --font-ar: 'Cairo', sans-serif;
+      --font-en: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-ar);
+      background: var(--surf);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* DARK MODE */
+    html.dark { --ink:#e2e8f0; --ink2:#cbd5e1; --slate:#94a3b8; --muted:#64748b; --line:#2d3748; --surf:#0f172a; --white:#1e293b; --accent:#3b82f6; --accent2:#2563eb; }
+    html.dark body          { background: var(--surf); }
+    html.dark .lang-bar     { background: #020817; }
+    html.dark .header       { background: var(--white); border-color: var(--line); }
+    html.dark .card         { background: var(--white); border-color: var(--line); }
+    html.dark .drop-zone    { background: #0f172a; border-color: var(--line); }
+    html.dark .drop-zone:hover { background: #1e293b; }
+    html.dark .articles-section { background: var(--white); }
+    html.dark .art-card     { background: #0f172a; border-color: var(--line); }
+    html.dark footer        { background: #020817; }
+    html.dark .queue-item   { background: #0f172a; border-color: var(--line); }
+    html.dark .steps        { border-color: var(--line); }
+    html.dark .step         { background: #0f172a; }
+    html.dark .feat         { background: #0f172a; }
+    html.dark .preview-info { background: #0f172a; }
+    html.dark .dz-icon-wrap { background: linear-gradient(135deg,#1e3a5f,#1e40af); }
+    html.dark .settings-panel { background: #0f172a; }
+    html.dark .seg-btn      { background: #1e293b; border-color: var(--line); color: var(--slate); }
+    html.dark .add-more-btn:hover { background: #1e3a5f; }
+
+    /* LANG BAR */
+    .lang-bar {
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 46px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .lang-bar-brand { display:flex; align-items:center; gap:8px; color:#fff; font-size:13px; font-weight:600; opacity:.85; }
+    .lang-bar-brand i { color: var(--gold); font-size:15px; }
+    .lang-switcher { display:flex; gap:4px; background:rgba(255,255,255,.08); border-radius:8px; padding:3px; }
+    .lang-btn { background:transparent; border:none; color:rgba(255,255,255,.6); font-family:inherit; font-size:12px; font-weight:600; padding:4px 14px; border-radius:6px; cursor:pointer; transition:all .2s; }
+    .lang-btn.active { background: var(--accent); color:#fff; }
+    .lang-btn:hover:not(.active) { color:#fff; }
+    .dark-toggle { background:rgba(255,255,255,.08); border:none; color:rgba(255,255,255,.7); width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:13px; transition:all .2s; margin-inline-start:2px; }
+    .dark-toggle:hover { background:rgba(255,255,255,.15); color:#fff; }
+
+    /* HEADER */
+    .header { background:var(--white); border-bottom:1px solid var(--line); padding:28px 32px 24px; text-align:center; }
+    .logo-icon { width:60px; height:60px; background:linear-gradient(135deg,var(--accent),#60a5fa); border-radius:16px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:14px; box-shadow:0 8px 20px rgba(37,99,235,.25); }
+    .logo-icon i { font-size:26px; color:#fff; }
+    .header h1 { font-size:26px; font-weight:900; color:var(--ink); margin-bottom:6px; letter-spacing:-.3px; }
+    .header h1 span { color:var(--accent); }
+    .header p { color:var(--muted); font-size:14px; max-width:400px; margin:0 auto; line-height:1.7; }
+
+    /* TOAST */
+    #toast { position:fixed; top:70px; left:50%; transform:translateX(-50%) translateY(-20px); background:var(--white); border-radius:12px; box-shadow:var(--shadow-lg); padding:14px 22px; display:flex; align-items:center; gap:12px; font-size:14px; font-weight:600; color:var(--ink); opacity:0; pointer-events:none; transition:all .35s cubic-bezier(.34,1.56,.64,1); z-index:9999; border:1px solid var(--line); min-width:260px; max-width:90vw; }
+    #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+    #toast .toast-icon { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+    #toast.error .toast-icon  { background:#fef2f2; color:var(--red); }
+    #toast.warning .toast-icon { background:#fffbeb; color:var(--gold); }
+    #toast.success .toast-icon { background:#ecfdf5; color:var(--green); }
+
+    /* MAIN */
+    .main { flex:1; padding:36px 20px 40px; display:flex; justify-content:center; }
+    .card { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow-md); border:1px solid var(--line); width:100%; max-width:560px; padding:32px; display:flex; flex-direction:column; gap:24px; transition: max-width .35s ease; }
+    .card.wide { max-width:960px; }
+
+    /* TWO-COLUMN WORKSPACE */
+    .workspace { display:flex; gap:20px; align-items:flex-start; }
+    .workspace-left  { flex:1; min-width:0; display:flex; flex-direction:column; gap:16px; }
+    .workspace-right { width:220px; flex-shrink:0; position:sticky; top:70px; }
+
+    /* LIVE PREVIEW PANEL */
+    .preview-panel {
+      background:var(--surf);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .preview-panel-head {
+      padding:10px 14px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-size:11px;
+      font-weight:700;
+      color:var(--slate);
+      text-transform:uppercase;
+      letter-spacing:.6px;
+    }
+    .preview-panel-head i { color:var(--accent); font-size:12px; }
+    .preview-canvas-wrap {
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:160px;
+      position:relative;
+    }
+    /* the page mock */
+    .page-mock {
+      background:#fff;
+      box-shadow:0 2px 12px rgba(0,0,0,.15);
+      border-radius:3px;
+      position:relative;
+      overflow:hidden;
+      transition:all .25s ease;
+      max-width:100%;
+    }
+    html.dark .page-mock { box-shadow:0 2px 12px rgba(0,0,0,.5); }
+    .page-mock-img {
+      position:absolute;
+      object-fit:contain;
+      transition:all .25s ease;
+    }
+    .preview-label-badge {
+      margin:0 12px 12px;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:7px;
+      padding:7px 10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:500;
+      line-height:1.5;
+    }
+    html.dark .preview-label-badge { background:#0f172a; }
+    .preview-label-badge strong { color:var(--ink2); display:block; font-size:12px; margin-bottom:2px; }
+
+    @media(max-width:700px){
+      .workspace { flex-direction:column; }
+      .workspace-right { width:100%; position:static; }
+    }
+
+    /* STEPS */
+    .steps { display:flex; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+    .step { flex:1; padding:10px 8px; text-align:center; font-size:12px; font-weight:600; color:var(--muted); background:var(--surf); border-left:1px solid var(--line); transition:all .3s; display:flex; align-items:center; justify-content:center; gap:6px; }
+    html[dir="rtl"] .step { border-left:none; border-right:1px solid var(--line); }
+    .step:first-child { border:none; }
+    .step.active { background:var(--accent); color:#fff; }
+    .step.done   { background:#ecfdf5; color:var(--green); }
+
+    /* DROP ZONE */
+    .drop-zone { border:2px dashed var(--line); border-radius:var(--r); padding:40px 20px; text-align:center; cursor:pointer; transition:all .25s; background:var(--surf); position:relative; overflow:hidden; }
+    .drop-zone:hover, .drop-zone.over { border-color:var(--accent); background:#f0f6ff; border-style:solid; }
+    .dz-icon-wrap { width:70px; height:70px; background:linear-gradient(135deg,#dbeafe,#bfdbfe); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px; transition:transform .3s; }
+    .drop-zone:hover .dz-icon-wrap { transform:translateY(-4px); }
+    .dz-icon-wrap i { font-size:28px; color:var(--accent); }
+    .dz-title { font-size:16px; font-weight:700; color:var(--ink2); margin-bottom:6px; }
+    .dz-sub   { font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.6; }
+    .dz-badge { display:inline-flex; gap:6px; margin-bottom:12px; }
+    .dz-badge span { background:var(--white); border:1px solid var(--line); border-radius:6px; padding:3px 10px; font-size:11px; font-weight:700; color:var(--slate); }
+    .paste-hint { font-size:12px; color:var(--muted); font-weight:500; }
+    #fileInput { display:none; }
+
+    /* QUEUE */
+    .queue-section { animation:fadeUp .3s ease; }
+    .queue-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+    .preview-label { font-size:13px; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:.8px; }
+    .change-btn { background:none; border:1px solid var(--line); border-radius:8px; padding:5px 12px; font-size:12px; font-weight:600; color:var(--slate); cursor:pointer; font-family:inherit; transition:all .2s; display:flex; align-items:center; gap:5px; }
+    .change-btn:hover { border-color:var(--accent); color:var(--accent); }
+    .queue-list { display:flex; flex-direction:column; gap:8px; max-height:260px; overflow-y:auto; padding-inline-end:2px; }
+    .queue-list::-webkit-scrollbar { width:4px; }
+    .queue-list::-webkit-scrollbar-thumb { background:var(--line); border-radius:4px; }
+    .queue-item { display:flex; align-items:center; gap:10px; background:var(--surf); border:1px solid var(--line); border-radius:10px; padding:8px 12px; animation:fadeUp .25s ease; }
+    .queue-thumb { width:44px; height:44px; object-fit:cover; border-radius:7px; flex-shrink:0; border:1px solid var(--line); }
+    .queue-info { flex:1; min-width:0; }
+    .queue-name { font-size:13px; font-weight:600; color:var(--ink2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .queue-size { font-size:11px; color:var(--muted); margin-top:2px; }
+    .queue-remove { background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; padding:4px; border-radius:6px; transition:color .2s; }
+    .queue-remove:hover { color:var(--red); }
+    .add-more-btn { width:100%; margin-top:8px; background:none; border:1px dashed var(--line); border-radius:8px; padding:9px; font-family:inherit; font-size:13px; font-weight:600; color:var(--accent); cursor:pointer; transition:all .2s; }
+    .add-more-btn:hover { background:#eff6ff; border-color:var(--accent); }
+
+    /* SETTINGS PANEL */
+    .settings-panel { background:var(--surf); border:1px solid var(--line); border-radius:var(--r); padding:16px; display:flex; flex-direction:column; gap:14px; }
+    .settings-title { display:flex; align-items:center; gap:7px; font-size:13px; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:.6px; }
+    .settings-title i { color:var(--accent); }
+    .setting-group { display:flex; flex-direction:column; gap:8px; }
+    .setting-label { font-size:12px; font-weight:600; color:var(--muted); }
+    .seg-control { display:flex; gap:6px; flex-wrap:wrap; }
+    .seg-btn {
+      flex:1; min-width:70px;
+      background:var(--white);
+      border:2px solid var(--line);
+      border-radius:8px; padding:9px 6px;
+      font-family:inherit; font-size:12px; font-weight:700;
+      color:var(--slate); cursor:pointer;
+      transition:all .18s ease;
+      display:flex; align-items:center; justify-content:center; gap:5px;
+      user-select:none;
+    }
+    .seg-btn:hover:not(.active) { border-color:#93c5fd; color:var(--accent); background:#f0f6ff; }
+    .seg-btn.active {
+      background:var(--accent2);
+      border-color:var(--accent2);
+      color:#fff;
+      box-shadow:0 2px 8px rgba(37,99,235,.35);
+      transform:translateY(-1px);
+    }
+    html.dark .seg-btn { background:#1e293b; border-color:var(--line); color:var(--slate); }
+    html.dark .seg-btn:hover:not(.active) { background:#1e3a5f; border-color:#3b82f6; color:#93c5fd; }
+    html.dark .seg-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+    /* PROGRESS */
+    .progress-wrap { height:4px; background:var(--line); border-radius:4px; overflow:hidden; display:none; }
+    .progress-bar  { height:100%; width:0%; background:linear-gradient(90deg,var(--accent),#60a5fa); border-radius:4px; transition:width .3s ease; }
+
+    /* CONVERT BUTTON */
+    .convert-btn { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; border:none; border-radius:10px; padding:16px 24px; font-family:inherit; font-size:16px; font-weight:700; cursor:pointer; width:100%; display:flex; align-items:center; justify-content:center; gap:10px; transition:all .25s; box-shadow:0 4px 14px rgba(37,99,235,.3); }
+    .convert-btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,.35); }
+    .convert-btn:disabled { background:linear-gradient(135deg,#cbd5e1,#94a3b8); box-shadow:none; cursor:not-allowed; }
+    .convert-btn.success { background:linear-gradient(135deg,var(--green),#047857); box-shadow:0 4px 14px rgba(5,150,105,.3); }
+
+    /* FEATURES */
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .feat { background:var(--surf); border:1px solid var(--line); border-radius:10px; padding:14px 10px; text-align:center; }
+    .feat i { font-size:20px; color:var(--accent); margin-bottom:6px; display:block; }
+    .feat-label { font-size:11px; font-weight:600; color:var(--slate); line-height:1.4; }
+
+    /* ADS */
+    .ad-slot {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .ad-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      opacity: .6;
+    }
+    .ad-placeholder {
+      background: var(--surf);
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .ad-placeholder i { font-size: 22px; opacity: .4; }
+    .ad-slot-banner .ad-placeholder { width:100%; max-width:728px; height:90px; }
+    .ad-slot-square .ad-placeholder { width:300px; height:250px; }
+    /* hide placeholder text in production — keep only for dev */
+    html.dark .ad-placeholder { background: #0f172a; }
+
+    /* ARTICLES */
+    .articles-section { background:var(--white); border-top:1px solid var(--line); padding:52px 20px; }
+    .articles-inner { max-width:960px; margin:0 auto; }
+    .articles-header { text-align:center; margin-bottom:36px; }
+    .articles-tag { display:inline-block; background:#eff6ff; color:var(--accent); font-size:12px; font-weight:700; padding:5px 14px; border-radius:20px; margin-bottom:12px; }
+    .articles-title { font-size:24px; font-weight:900; color:var(--ink); margin-bottom:8px; }
+    .articles-sub { font-size:14px; color:var(--muted); }
+    .articles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media(max-width:700px){ .articles-grid{ grid-template-columns:1fr; } }
+    .art-card { border:1px solid var(--line); border-radius:var(--r); padding:20px; background:var(--white); cursor:pointer; transition:box-shadow .25s, transform .25s; overflow:hidden; }
+    .art-card:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
+    .art-card-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .art-icon-wrap { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .art-meta { display:flex; flex-direction:column; gap:3px; }
+    .art-tag  { font-size:11px; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:.5px; }
+    .art-read { font-size:11px; color:var(--muted); }
+    .art-title { font-size:15px; font-weight:700; color:var(--ink); line-height:1.5; margin-bottom:14px; }
+    .art-body { max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s; opacity:0; }
+    .art-card.open .art-body { max-height:500px; opacity:1; }
+    .art-content p { font-size:13.5px; color:var(--slate); line-height:1.75; margin-bottom:10px; }
+    .art-content p:last-child { margin-bottom:14px; }
+    .try-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; transition:background .2s; }
+    .try-btn:hover { background:var(--accent2); }
+    .art-toggle-row { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--line); }
+    .art-toggle-txt { font-size:12px; font-weight:600; color:var(--accent); }
+    .art-chevron { font-size:12px; color:var(--muted); transition:transform .35s; }
+    .art-card.open .art-chevron { transform:rotate(180deg); }
+
+    /* FOOTER */
+    footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.06); padding:22px 32px; text-align:center; }
+    .footer-inner { max-width:600px; margin:0 auto; }
+    .footer-logo { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px; }
+    .footer-logo i { color:var(--gold); font-size:16px; }
+    .footer-logo span { color:#fff; font-size:14px; font-weight:700; }
+    .footer-divider { width:40px; height:2px; background:var(--accent); margin:10px auto; border-radius:2px; }
+    .copyright { color:rgba(255,255,255,.4); font-size:12px; line-height:1.8; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+    /* LTR */
+    html[dir="ltr"] body { font-family:var(--font-en); }
+    html[dir="ltr"] .step { border-right:1px solid var(--line); border-left:none; }
+    html[dir="ltr"] .step:first-child { border:none; }
+
+    @media(max-width:480px){
+      .lang-bar { padding:0 16px; }
+      .card { padding:20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <div class="lang-bar-brand">
+    <i class="fa-solid fa-bolt-lightning"></i>
+    <span>PDF Forge</span>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="ar">عربي</button>
+    <button class="lang-btn" data-lang="en">English</button>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">
+      <i class="fa-solid fa-moon" id="darkIcon"></i>
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">
+  <div class="toast-icon" id="toastIcon"><i id="toastIco"></i></div>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-icon"><i class="fa-solid fa-file-export"></i></div>
+  <h1 class="t" data-ar="محوّل <span>الصور</span> إلى PDF" data-en="Image to <span>PDF</span> Converter">محوّل <span>الصور</span> إلى PDF</h1>
+  <p class="t"
+    data-ar="ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة."
+    data-en="Upload your image and we'll instantly convert it to a high-quality PDF — free, no cloud upload.">ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="card" id="card">
+
+    <!-- Steps -->
+    <div class="steps">
+      <div class="step active" id="step1">
+        <i class="fa-solid fa-image"></i>
+        <span class="t" data-ar="١. اختر صورة" data-en="1. Choose Image">١. اختر صورة</span>
+      </div>
+      <div class="step" id="step2">
+        <i class="fa-solid fa-sliders"></i>
+        <span class="t" data-ar="٢. إعدادات" data-en="2. Settings">٢. إعدادات</span>
+      </div>
+      <div class="step" id="step3">
+        <i class="fa-solid fa-download"></i>
+        <span class="t" data-ar="٣. تحميل" data-en="3. Download">٣. تحميل</span>
+      </div>
+    </div>
+
+    <!-- Drop Zone -->
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+      <div class="dz-icon-wrap"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+      <div class="dz-title t" data-ar="اسحب وأفلت الصور هنا" data-en="Drag & Drop images here">اسحب وأفلت الصور هنا</div>
+      <div class="dz-sub t" data-ar="أو اضغط لاختيار صورة أو أكثر من جهازك" data-en="or click to select one or more images">أو اضغط لاختيار صورة أو أكثر من جهازك</div>
+      <div class="dz-badge"><span>PNG</span><span>JPG</span><span>JPEG</span><span>WEBP</span></div>
+      <div class="paste-hint t" data-ar="💡 يمكنك لصق صورة بـ Ctrl+V" data-en="💡 You can also paste with Ctrl+V">💡 يمكنك لصق صورة بـ Ctrl+V</div>
+      <input type="file" id="fileInput" accept="image/*" multiple />
+    </div>
+
+    <!-- Queue + Settings workspace (two-column when active) -->
+    <div class="workspace" id="workspace" style="display:none">
+
+      <!-- LEFT: queue + settings -->
+      <div class="workspace-left">
+
+        <!-- Queue -->
+        <div id="queueSection">
+          <div class="queue-header">
+            <span class="preview-label t" data-ar="الصور المختارة" data-en="Selected Images">الصور المختارة</span>
+            <button class="change-btn" onclick="resetAll()">
+              <i class="fa-solid fa-trash"></i>
+              <span class="t" data-ar="مسح الكل" data-en="Clear all">مسح الكل</span>
+            </button>
+          </div>
+          <div class="queue-list" id="queueList"></div>
+          <button class="add-more-btn t" data-ar="+ إضافة المزيد" data-en="+ Add more" onclick="document.getElementById('fileInput').click()">+ إضافة المزيد</button>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel">
+          <div class="settings-title">
+            <i class="fa-solid fa-sliders"></i>
+            <span class="t" data-ar="خيارات الصفحة" data-en="Page Options">خيارات الصفحة</span>
+          </div>
+
+          <!-- Merge -->
+          <div class="setting-group" id="mergeGroup" style="display:none">
+            <label class="setting-label t" data-ar="طريقة التصدير" data-en="Export Mode">طريقة التصدير</label>
+            <div class="seg-control" id="mergeCtrl">
+              <button class="seg-btn active" data-val="merge">
+                <i class="fa-solid fa-layer-group"></i>
+                <span class="t" data-ar="دمج في PDF واحد" data-en="Merge into one PDF">دمج في PDF واحد</span>
+              </button>
+              <button class="seg-btn" data-val="separate">
+                <i class="fa-solid fa-copy"></i>
+                <span class="t" data-ar="ملف PDF لكل صورة" data-en="Separate PDF per image">ملف PDF لكل صورة</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Page Size -->
+          <div class="setting-group">
+            <label class="setting-label t" data-ar="حجم الصفحة" data-en="Page Size">حجم الصفحة</label>
+            <div class="seg-control" id="pageSizeCtrl">
+              <button class="seg-btn active" data-val="original">
+                <i class="fa-solid fa-expand"></i>
+                <span class="t" data-ar="أصلي" data-en="Original">أصلي</span>
+              </button>
+              <button class="seg-btn" data-val="a4">
+                <i class="fa-solid fa-file"></i><span>A4</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Orientation -->
+          <div class="setting-group" id="orientGroup" style="display:none">
+            <label class="setting-label t" data-ar="اتجاه الصفحة" data-en="Orientation">اتجاه الصفحة</label>
+            <div class="seg-control" id="orientCtrl">
+              <button class="seg-btn active" data-val="portrait">
+                <i class="fa-solid fa-rectangle-portrait"></i>
+                <span class="t" data-ar="رأسي" data-en="Portrait">رأسي</span>
+              </button>
+              <button class="seg-btn" data-val="landscape">
+                <i class="fa-solid fa-rectangle-landscape"></i>
+                <span class="t" data-ar="أفقي" data-en="Landscape">أفقي</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Margin -->
+          <div class="setting-group">
+            <label class="setting-label t" data-ar="هامش الصفحة" data-en="Page Margin">هامش الصفحة</label>
+            <div class="seg-control" id="marginCtrl">
+              <button class="seg-btn active" data-val="0">
+                <i class="fa-solid fa-border-none"></i>
+                <span class="t" data-ar="بدون" data-en="None">بدون</span>
+              </button>
+              <button class="seg-btn" data-val="30">
+                <i class="fa-solid fa-border-outer"></i>
+                <span class="t" data-ar="متوسط" data-en="Medium">متوسط</span>
+              </button>
+              <button class="seg-btn" data-val="60">
+                <i class="fa-solid fa-border-all"></i>
+                <span class="t" data-ar="كبير" data-en="Large">كبير</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Rotation -->
+          <div class="setting-group">
+            <label class="setting-label t" data-ar="تدوير الصورة" data-en="Rotate Image">تدوير الصورة</label>
+            <div class="seg-control" id="rotateCtrl">
+              <button class="seg-btn active" data-val="0">
+                <i class="fa-solid fa-circle-check"></i>
+                <span class="t" data-ar="بدون" data-en="None">بدون</span>
+              </button>
+              <button class="seg-btn" data-val="90">
+                <i class="fa-solid fa-rotate-right"></i><span>90°</span>
+              </button>
+              <button class="seg-btn" data-val="180">
+                <i class="fa-solid fa-rotate"></i><span>180°</span>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /settings-panel -->
+      </div><!-- /workspace-left -->
+
+      <!-- RIGHT: live preview -->
+      <div class="workspace-right">
+        <div class="preview-panel">
+          <div class="preview-panel-head">
+            <i class="fa-solid fa-eye"></i>
+            <span class="t" data-ar="معاينة مباشرة" data-en="Live Preview">معاينة مباشرة</span>
+          </div>
+          <div class="preview-canvas-wrap" id="previewWrap">
+            <div class="page-mock" id="pageMock">
+              <img class="page-mock-img" id="mockImg" src="" alt="" />
+            </div>
+          </div>
+          <div class="preview-label-badge" id="previewBadge">
+            <strong id="previewSize">—</strong>
+            <span id="previewInfo">—</span>
+          </div>
+        </div>
+      </div><!-- /workspace-right -->
+
+    </div><!-- /workspace -->
+
+    <!-- Progress -->
+    <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
+
+    <!-- Convert Button -->
+    <button class="convert-btn" id="convertBtn" disabled>
+      <i class="fa-solid fa-wand-magic-sparkles" id="btnIcon"></i>
+      <span id="btnText" class="t" data-ar="تحويل وتحميل PDF" data-en="Convert & Download PDF">تحويل وتحميل PDF</span>
+    </button>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feat"><i class="fa-solid fa-lock"></i><div class="feat-label t" data-ar="خاص ١٠٠%" data-en="100% Private">خاص ١٠٠%</div></div>
+      <div class="feat"><i class="fa-solid fa-bolt-lightning"></i><div class="feat-label t" data-ar="فوري وسريع" data-en="Instant & Fast">فوري وسريع</div></div>
+      <div class="feat"><i class="fa-solid fa-star"></i><div class="feat-label t" data-ar="جودة عالية" data-en="High Quality">جودة عالية</div></div>
+    </div>
+
+    <!-- ═══ AD SLOT 1 — أسفل زر التحويل (728×90) ═══
+         ضع كود Monetag أو Adsterra هنا لاحقاً
+         استبدل كل محتوى div.ad-slot بكود الشبكة
+    ══════════════════════════════════════════════ -->
+    <div class="ad-slot ad-slot-banner">
+      <div class="ad-label t" data-ar="إعلان" data-en="Advertisement">إعلان</div>
+      <div class="ad-placeholder">
+        <!-- ضع كود إعلانك هنا -->
+        <!-- Example: <script src="//monetag.com/..."></script> -->
+        <i class="fa-solid fa-rectangle-ad"></i>
+        <span class="t" data-ar="728 × 90 — مكان الإعلان" data-en="728 × 90 — Ad Space">728 × 90 — مكان الإعلان</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section class="articles-section">
+  <div class="articles-inner">
+    <div class="articles-header">
+      <div class="articles-tag t" data-ar="📚 مقالات مفيدة" data-en="📚 Helpful Guides">📚 مقالات مفيدة</div>
+      <h2 class="articles-title t" data-ar="كل ما تحتاج معرفته عن PDF" data-en="Everything You Need to Know About PDF">كل ما تحتاج معرفته عن PDF</h2>
+      <p class="articles-sub t" data-ar="مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة" data-en="Short, practical articles answering the most common questions">مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة</p>
+    </div>
+    <div class="articles-grid">
+
+      <article class="art-card" onclick="toggleArticle(this)">
+        <div class="art-card-head">
+          <div class="art-icon-wrap" style="background:#eff6ff"><i class="fa-solid fa-mobile-screen" style="color:#2563eb"></i></div>
+          <div class="art-meta">
+            <span class="art-tag t" data-ar="الهاتف" data-en="Mobile">الهاتف</span>
+            <span class="art-read t" data-ar="دقيقة واحدة" data-en="1 min read">دقيقة واحدة</span>
+          </div>
+        </div>
+        <h3 class="art-title t" data-ar="كيف تحوّل صورة إلى PDF من هاتفك؟" data-en="How to Convert an Image to PDF from Your Phone?">كيف تحوّل صورة إلى PDF من هاتفك؟</h3>
+        <div class="art-body">
+          <div class="art-content t"
+            data-ar="<p>كثير من الناس يحتاجون إرسال صورة كمستند PDF — سواء لإرسال وثيقة رسمية أو حفظ إيصال أو مشاركة صورة بشكل احترافي.</p><p><strong>الطريقة الأسهل:</strong> افتح موقع PDF Forge من متصفح هاتفك، اختر الصورة، ثم اضغط تحويل — ستحصل على PDF في ثوانٍ بدون تثبيت أي تطبيق.</p><p>✅ يعمل مع Android وiPhone على حدٍّ سواء.</p>"
+            data-en="<p>Many people need to send an image as a PDF — for official paperwork, saving a receipt, or sharing professionally.</p><p><strong>The easiest way:</strong> Open PDF Forge in your phone browser, select the image, hit Convert — PDF in seconds, no app install needed.</p><p>✅ Works on Android and iPhone alike.</p>">
+            <p>كثير من الناس يحتاجون إرسال صورة كمستند PDF — سواء لإرسال وثيقة رسمية أو حفظ إيصال أو مشاركة صورة بشكل احترافي.</p>
+            <p><strong>الطريقة الأسهل:</strong> افتح موقع PDF Forge من متصفح هاتفك، اختر الصورة، ثم اضغط تحويل — ستحصل على PDF في ثوانٍ بدون تثبيت أي تطبيق.</p>
+            <p>✅ يعمل مع Android وiPhone على حدٍّ سواء.</p>
+          </div>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+        </div>
+        <div class="art-toggle-row">
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <i class="fa-solid fa-chevron-down art-chevron"></i>
+        </div>
+      </article>
+
+      <!-- ═══ AD SLOT 2 — بين المقالات (300×250) ═══
+           ضع كود Monetag أو Adsterra هنا لاحقاً
+      ══════════════════════════════════════════════ -->
+      <div class="ad-slot ad-slot-square">
+        <div class="ad-label t" data-ar="إعلان" data-en="Advertisement">إعلان</div>
+        <div class="ad-placeholder">
+          <!-- ضع كود إعلانك هنا -->
+          <i class="fa-solid fa-rectangle-ad"></i>
+          <span class="t" data-ar="300 × 250 — مكان الإعلان" data-en="300 × 250 — Ad Space">300 × 250 — مكان الإعلان</span>
+        </div>
+      </div>
+
+      <article class="art-card" onclick="toggleArticle(this)">
+        <div class="art-card-head">
+          <div class="art-icon-wrap" style="background:#f0fdf4"><i class="fa-solid fa-shield-halved" style="color:#059669"></i></div>
+          <div class="art-meta">
+            <span class="art-tag t" data-ar="الأمان" data-en="Privacy">الأمان</span>
+            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read">دقيقتان</span>
+          </div>
+        </div>
+        <h3 class="art-title t" data-ar="هل تحويل الصور أونلاين آمن؟" data-en="Is Online Image Conversion Safe?">هل تحويل الصور أونلاين آمن؟</h3>
+        <div class="art-body">
+          <div class="art-content t"
+            data-ar="<p>معظم مواقع التحويل ترفع صورتك إلى خوادمها أولاً — وهذا يعني أن ملفاتك الخاصة قد تُخزَّن.</p><p><strong>ما يجعل PDF Forge مختلفاً:</strong> كل شيء يحدث داخل متصفحك فقط. صورتك لا تغادر جهازك أبداً.</p><p>🔒 مثالي للوثائق الحساسة كالهوية والعقود والمستندات الطبية.</p>"
+            data-en="<p>Most conversion sites upload your image to their servers first — meaning your private files may be stored.</p><p><strong>What makes PDF Forge different:</strong> Everything happens inside your browser only. Your image never leaves your device.</p><p>🔒 Perfect for sensitive documents like IDs, contracts, and medical records.</p>">
+            <p>معظم مواقع التحويل ترفع صورتك إلى خوادمها أولاً — وهذا يعني أن ملفاتك الخاصة قد تُخزَّن.</p>
+            <p><strong>ما يجعل PDF Forge مختلفاً:</strong> كل شيء يحدث داخل متصفحك فقط. صورتك لا تغادر جهازك أبداً.</p>
+            <p>🔒 مثالي للوثائق الحساسة كالهوية والعقود والمستندات الطبية.</p>
+          </div>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+        </div>
+        <div class="art-toggle-row">
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <i class="fa-solid fa-chevron-down art-chevron"></i>
+        </div>
+      </article>
+
+      <article class="art-card" onclick="toggleArticle(this)">
+        <div class="art-card-head">
+          <div class="art-icon-wrap" style="background:#fdf4ff"><i class="fa-solid fa-file-circle-question" style="color:#9333ea"></i></div>
+          <div class="art-meta">
+            <span class="art-tag t" data-ar="أساسيات" data-en="Basics">أساسيات</span>
+            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read">دقيقتان</span>
+          </div>
+        </div>
+        <h3 class="art-title t" data-ar="متى تحفظ ملفك PDF بدلاً من صورة؟" data-en="When to Save as PDF Instead of an Image?">متى تحفظ ملفك PDF بدلاً من صورة؟</h3>
+        <div class="art-body">
+          <div class="art-content t"
+            data-ar="<p>الفرق بسيط لكن مهم: الصورة تُعرَض فقط، أما PDF فهو مستند يحافظ على تنسيقه في أي جهاز أو طباعة.</p><p><strong>استخدم PDF عندما:</strong> ترسل وثيقة رسمية، أو تطبع مستنداً، أو تريد ضمان أن يبدو الملف متطابقاً عند الآخرين.</p><p><strong>احتفظ بالصورة عندما:</strong> تنشر على السوشيال ميديا فقط.</p>"
+            data-en="<p>Simple but important: an image is just displayed, while a PDF preserves its formatting on any device or in print.</p><p><strong>Use PDF when:</strong> sending official documents, printing, or ensuring identical appearance for others.</p><p><strong>Keep as image when:</strong> posting on social media only.</p>">
+            <p>الفرق بسيط لكن مهم: الصورة تُعرَض فقط، أما PDF فهو مستند يحافظ على تنسيقه في أي جهاز أو طباعة.</p>
+            <p><strong>استخدم PDF عندما:</strong> ترسل وثيقة رسمية، أو تطبع مستنداً، أو تريد ضمان أن يبدو الملف متطابقاً عند الآخرين.</p>
+            <p><strong>احتفظ بالصورة عندما:</strong> تنشر على السوشيال ميديا فقط.</p>
+          </div>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+        </div>
+        <div class="art-toggle-row">
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <i class="fa-solid fa-chevron-down art-chevron"></i>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><i class="fa-solid fa-bolt-lightning"></i><span>PDF Forge</span></div>
+    <div class="footer-divider"></div>
+    <div class="copyright">
+      <span class="t"
+        data-ar="جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري"
+        data-en="All Rights Reserved &copy; 2025 — <strong>PDF Forge</strong> | Free for personal and commercial use">
+        جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري
+      </span><br>
+      <span class="t"
+        data-ar="تعمل بالكامل في المتصفح — لا يتم رفع أي بيانات إلى الخوادم"
+        data-en="Runs entirely in your browser — no data uploaded to any server">
+        تعمل بالكامل في المتصفح — لا يتم رفع أي بيانات إلى الخوادم
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── DARK MODE ── */
+  window.toggleDark = function() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    document.getElementById('darkIcon').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  };
+  var saved = localStorage.getItem('theme');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.documentElement.classList.add('dark');
+    document.getElementById('darkIcon').className = 'fa-solid fa-sun';
+  }
+
+  /* ── LANGUAGE ── */
+  var lang = 'ar';
+  window.applyLang = function(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir  = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === l);
+    });
+    document.querySelectorAll('.t').forEach(function(el) {
+      if (el.dataset[l]) el.innerHTML = el.dataset[l];
+    });
+  };
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { applyLang(btn.dataset.lang); });
+  });
+
+  /* ── TOAST ── */
+  var toastTimer;
+  function showToast(type, msg) {
+    var toast = document.getElementById('toast');
+    var ico   = document.getElementById('toastIco');
+    var msgEl = document.getElementById('toastMsg');
+    var icons = { error:'fa-circle-xmark', warning:'fa-triangle-exclamation', success:'fa-circle-check' };
+    toast.className = '';
+    ico.className   = 'fa-solid ' + (icons[type] || 'fa-circle-info');
+    msgEl.textContent = msg;
+    toast.classList.add('show', type);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 3500);
+  }
+
+  /* ── ARTICLES ── */
+  window.toggleArticle = function(card) {
+    var isOpen = card.classList.contains('open');
+    document.querySelectorAll('.art-card.open').forEach(function(c) { c.classList.remove('open'); });
+    if (!isOpen) card.classList.add('open');
+  };
+  window.scrollToTop = function(e) {
+    e.stopPropagation();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /* ── SETTINGS ── */
+  var pageSize   = 'original';
+  var pageOrient = 'portrait';
+  var imgRotate  = 0;
+  var imgMargin  = 0;
+  var mergeMode  = 'merge'; // 'merge' | 'separate'
+  // A4 at 300dpi = 2480×3508px canvas, but PDF page in points (pt): A4 = 595×842pt
+  var PAGE_SIZES = {
+    a4: {
+      portrait:  { canvasW:2480, canvasH:3508, pdfW:595, pdfH:842  },
+      landscape: { canvasW:3508, canvasH:2480, pdfW:842, pdfH:595  }
+    }
+  };
+
+  function wireSegControl(groupId, onChange) {
+    var group = document.getElementById(groupId);
+    if (!group) return;
+    group.querySelectorAll('.seg-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        group.querySelectorAll('.seg-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        onChange(btn.dataset.val);
+      });
+    });
+  }
+
+  wireSegControl('pageSizeCtrl', function(val) {
+    pageSize = val;
+    var show = (val !== 'original');
+    document.getElementById('orientGroup').style.display = show ? 'block' : 'none';
+    if (!show) {
+      pageOrient = 'portrait';
+      document.querySelectorAll('#orientCtrl .seg-btn').forEach(function(b,i){ b.classList.toggle('active', i===0); });
+    }
+    updatePreview();
+  });
+  wireSegControl('orientCtrl', function(val) { pageOrient = val; updatePreview(); });
+  wireSegControl('marginCtrl', function(val) { imgMargin  = parseInt(val, 10); updatePreview(); });
+  wireSegControl('rotateCtrl', function(val) { imgRotate  = parseInt(val, 10); updatePreview(); });
+  wireSegControl('mergeCtrl',  function(val) { mergeMode  = val; });
+
+  /* ── REFS ── */
+  var dropZone      = document.getElementById('dropZone');
+  var fileInput     = document.getElementById('fileInput');
+  var workspace     = document.getElementById('workspace');
+  var queueList     = document.getElementById('queueList');
+  var settingsPanel = document.getElementById('settingsPanel');
+  var convertBtn    = document.getElementById('convertBtn');
+  var btnIcon       = document.getElementById('btnIcon');
+  var btnText       = document.getElementById('btnText');
+  var progressWrap  = document.getElementById('progressWrap');
+  var progressBar   = document.getElementById('progressBar');
+  var pageMock      = document.getElementById('pageMock');
+  var mockImg       = document.getElementById('mockImg');
+  var previewSize   = document.getElementById('previewSize');
+  var previewInfo   = document.getElementById('previewInfo');
+  var imageQueue    = [];
+  var PREVIEW_W     = 196; // px width of the preview panel inner
+
+  /* ── LIVE PREVIEW ── */
+  function updatePreview() {
+    if (!imageQueue.length) return;
+    var item = imageQueue[0];
+
+    // determine page aspect
+    var isA4      = (pageSize === 'a4');
+    var landscape = (pageOrient === 'landscape');
+    var pageAR; // width/height ratio
+    if (isA4) {
+      pageAR = landscape ? (3508/2480) : (2480/3508);
+    } else {
+      // original — use image natural size
+      var tmpImg = new Image();
+      tmpImg.src = item.dataUrl;
+      var iw = tmpImg.naturalWidth  || 400;
+      var ih = tmpImg.naturalHeight || 500;
+      if (imgRotate === 90 || imgRotate === 180) { var t=iw; iw=ih; ih=t; }
+      pageAR = iw/ih;
+    }
+
+    var mockW = PREVIEW_W;
+    var mockH = Math.round(mockW / pageAR);
+    // cap height
+    if (mockH > 280) { mockH = 280; mockW = Math.round(mockH * pageAR); }
+
+    pageMock.style.width  = mockW + 'px';
+    pageMock.style.height = mockH + 'px';
+
+    // margin ratio
+    var M = imgMargin;
+    var marginRatio = M / (isA4 ? 794 : (mockW * 2)); // rough scale
+    var marginPx = Math.round(M * mockW / (isA4 ? (landscape ? 1123 : 794) : mockW));
+
+    // image inside mock
+    mockImg.src = item.dataUrl;
+    mockImg.style.left   = marginPx + 'px';
+    mockImg.style.top    = marginPx + 'px';
+    mockImg.style.width  = (mockW - marginPx*2) + 'px';
+    mockImg.style.height = (mockH - marginPx*2) + 'px';
+    mockImg.style.transform = 'rotate(' + imgRotate + 'deg)';
+    mockImg.style.transformOrigin = 'center center';
+    mockImg.style.objectFit = 'contain';
+
+    // badge text
+    var sizeLabel = isA4
+      ? (landscape ? 'A4 — أفقي' : 'A4 — رأسي')
+      : (lang === 'ar' ? 'أصلي' : 'Original');
+    previewSize.textContent = sizeLabel;
+    var marginLabel = M === 0
+      ? (lang==='ar' ? 'بدون هامش' : 'No margin')
+      : M === 30
+        ? (lang==='ar' ? 'هامش متوسط' : 'Medium margin')
+        : (lang==='ar' ? 'هامش كبير' : 'Large margin');
+    var rotLabel = imgRotate > 0 ? ' · ' + imgRotate + '°' : '';
+    previewInfo.textContent = marginLabel + rotLabel;
+  }
+
+  function formatSize(b) {
+    if (b < 1024)    return b + ' B';
+    if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+    return (b/1048576).toFixed(2) + ' MB';
+  }
+
+  function setStep(n) {
+    [1,2,3].forEach(function(i) {
+      var el = document.getElementById('step'+i);
+      el.classList.remove('active','done');
+      if (i < n)  el.classList.add('done');
+      if (i === n) el.classList.add('active');
+    });
+  }
+
+  function renderQueue() {
+    queueList.innerHTML = '';
+    imageQueue.forEach(function(item, idx) {
+      var div = document.createElement('div');
+      div.className = 'queue-item';
+      div.innerHTML =
+        '<img class="queue-thumb" src="'+item.dataUrl+'" alt="">' +
+        '<div class="queue-info">' +
+          '<div class="queue-name">'+item.name+'</div>' +
+          '<div class="queue-size">'+item.size+'</div>' +
+        '</div>' +
+        '<button class="queue-remove" onclick="removeItem('+idx+')"><i class="fa-solid fa-xmark"></i></button>';
+      queueList.appendChild(div);
+    });
+    if (imageQueue.length > 0) {
+      dropZone.style.display  = 'none';
+      workspace.style.display = 'flex';
+      document.getElementById('card').classList.add('wide');
+      convertBtn.disabled     = false;
+      convertBtn.classList.remove('success');
+      btnIcon.className       = 'fa-solid fa-wand-magic-sparkles';
+      var mg = document.getElementById('mergeGroup');
+      if (imageQueue.length > 1) {
+        mg.style.display = 'block';
+      } else {
+        mg.style.display = 'none';
+        mergeMode = 'merge';
+        document.querySelectorAll('#mergeCtrl .seg-btn').forEach(function(b,i){ b.classList.toggle('active',i===0); });
+      }
+      var n = imageQueue.length;
+      btnText.innerHTML = lang === 'ar'
+        ? 'تحويل ' + (n > 1 ? n + ' صور' : 'صورة') + ' إلى PDF'
+        : 'Convert ' + n + ' image' + (n > 1 ? 's' : '') + ' to PDF';
+      updatePreview();
+    } else {
+      resetAll();
+    }
+  }
+
+  window.removeItem = function(idx) {
+    imageQueue.splice(idx, 1);
+    renderQueue();
+    showToast('warning', lang === 'ar' ? 'تم حذف الصورة' : 'Image removed');
+  };
+
+  window.resetAll = function() {
+    imageQueue = [];
+    dropZone.style.display     = 'block';
+    workspace.style.display    = 'none';
+    document.getElementById('card').classList.remove('wide');
+    progressWrap.style.display = 'none';
+    progressBar.style.width    = '0%';
+    convertBtn.disabled        = true;
+    convertBtn.classList.remove('success');
+    fileInput.value            = '';
+    btnIcon.className          = 'fa-solid fa-wand-magic-sparkles';
+    btnText.innerHTML          = lang === 'ar' ? 'تحويل وتحميل PDF' : 'Convert & Download PDF';
+    pageSize='original'; pageOrient='portrait'; imgRotate=0; imgMargin=0; mergeMode='merge';
+    document.querySelectorAll('#pageSizeCtrl .seg-btn').forEach(function(b,i){ b.classList.toggle('active',i===0); });
+    document.querySelectorAll('#orientCtrl .seg-btn').forEach(function(b,i) { b.classList.toggle('active',i===0); });
+    document.querySelectorAll('#marginCtrl .seg-btn').forEach(function(b,i) { b.classList.toggle('active',i===0); });
+    document.querySelectorAll('#rotateCtrl .seg-btn').forEach(function(b,i) { b.classList.toggle('active',i===0); });
+    document.querySelectorAll('#mergeCtrl .seg-btn').forEach(function(b,i)  { b.classList.toggle('active',i===0); });
+    document.getElementById('orientGroup').style.display = 'none';
+    document.getElementById('mergeGroup').style.display  = 'none';
+    setStep(1);
+  };
+
+  function addFiles(files) {
+    var valid = Array.from(files).filter(function(f) { return f.type.startsWith('image/'); });
+    if (!valid.length) {
+      showToast('error', lang === 'ar' ? 'يرجى اختيار ملفات صور فقط' : 'Please select image files only');
+      return;
+    }
+    var loaded = 0;
+    valid.forEach(function(file) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        imageQueue.push({ name:file.name, size:formatSize(file.size), dataUrl:e.target.result });
+        loaded++;
+        if (loaded === valid.length) {
+          renderQueue();
+          setStep(2);
+          showToast('success', lang==='ar' ? 'تم إضافة '+valid.length+' صورة ✓' : valid.length+' image(s) added ✓');
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ── EVENTS ── */
+  fileInput.addEventListener('change', function(e) { addFiles(e.target.files); });
+
+  ['dragover','dragenter'].forEach(function(evt) {
+    dropZone.addEventListener(evt, function(e) { e.preventDefault(); dropZone.classList.add('over'); });
+  });
+  ['dragleave','dragend'].forEach(function(evt) {
+    dropZone.addEventListener(evt, function() { dropZone.classList.remove('over'); });
+  });
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault(); dropZone.classList.remove('over'); addFiles(e.dataTransfer.files);
+  });
+
+  document.addEventListener('paste', function(e) {
+    var items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    var files = Array.from(items).filter(function(i){ return i.type.startsWith('image/'); }).map(function(i){ return i.getAsFile(); }).filter(Boolean);
+    if (files.length) { addFiles(files); showToast('success', lang==='ar' ? '📋 تم لصق الصورة!' : '📋 Image pasted!'); }
+  });
+
+  /* ── CONVERT ── */
+  function loadImageToCanvas(dataUrl) {
+    return new Promise(function(resolve) {
+      var img = new Image();
+      img.onload = function() {
+        var c = document.createElement('canvas');
+        c.width = img.naturalWidth; c.height = img.naturalHeight;
+        c.getContext('2d').drawImage(img, 0, 0);
+        resolve({ canvas:c, w:img.naturalWidth, h:img.naturalHeight });
+      };
+      img.src = dataUrl;
+    });
+  }
+
+  convertBtn.addEventListener('click', async function() {
+    if (!imageQueue.length) {
+      showToast('warning', lang==='ar' ? 'يرجى إضافة صورة أولاً!' : 'Please add an image first!');
+      return;
+    }
+    convertBtn.disabled = true;
+    btnIcon.className   = 'fa-solid fa-spinner fa-spin';
+    btnText.innerHTML   = lang==='ar' ? 'جاري التحويل…' : 'Converting…';
+    progressWrap.style.display = 'block';
+    progressBar.style.width    = '5%';
+
+    try {
+      var PDFDocument = PDFLib.PDFDocument;
+      var total = imageQueue.length;
+
+      // ── helper: process one image → canvas ready for PDF ──
+      async function processImage(item) {
+        var result = await loadImageToCanvas(item.dataUrl);
+        var srcCanvas = result.canvas, imgW = result.w, imgH = result.h;
+
+        // rotation
+        if (imgRotate !== 0) {
+          var rotRad = imgRotate * Math.PI / 180;
+          var rotW = (imgRotate===90||imgRotate===270) ? imgH : imgW;
+          var rotH = (imgRotate===90||imgRotate===270) ? imgW : imgH;
+          var rotCanvas = document.createElement('canvas');
+          rotCanvas.width = rotW; rotCanvas.height = rotH;
+          var rotCtx = rotCanvas.getContext('2d');
+          rotCtx.translate(rotW/2, rotH/2);
+          rotCtx.rotate(rotRad);
+          rotCtx.drawImage(srcCanvas, -imgW/2, -imgH/2);
+          srcCanvas = rotCanvas; imgW = rotW; imgH = rotH;
+        }
+
+        // page size — canvas resolution vs PDF point size
+        var pageW, pageH, pdfW, pdfH;
+        if (pageSize === 'original') {
+          pageW = imgW; pageH = imgH;
+          pdfW  = imgW; pdfH  = imgH; // PDF in px, same as image
+        } else {
+          var dims = PAGE_SIZES[pageSize][pageOrient];
+          pageW = dims.canvasW; pageH = dims.canvasH; // high-res canvas
+          pdfW  = dims.pdfW;   pdfH  = dims.pdfH;   // PDF in points
+        }
+
+        var out = document.createElement('canvas');
+        out.width = pageW; out.height = pageH;
+        var ctx = out.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, pageW, pageH);
+
+        // scale margin to canvas resolution
+        var scale  = (pageSize === 'original') ? 1 : (pageW / (pageOrient==='landscape' ? 3508 : 2480)) * (2480/794);
+        var Mbase  = imgMargin; // base margin in "96dpi px"
+        var M      = (pageSize === 'original') ? Mbase : Math.round(Mbase * pageW / 794);
+
+        var dx=0, dy=0, dw=pageW, dh=pageH;
+        if (M > 0) {
+          var aW=pageW-M*2, aH=pageH-M*2;
+          var ratio=Math.min(aW/imgW, aH/imgH);
+          dw=imgW*ratio; dh=imgH*ratio;
+          dx=M+(aW-dw)/2; dy=M+(aH-dh)/2;
+        } else if (pageSize !== 'original') {
+          var ratio2=Math.min(pageW/imgW, pageH/imgH);
+          dw=imgW*ratio2; dh=imgH*ratio2;
+          dx=(pageW-dw)/2; dy=(pageH-dh)/2;
+        }
+        ctx.drawImage(srcCanvas, dx, dy, dw, dh);
+
+        var pngUrl = out.toDataURL('image/png');
+        var res    = await fetch(pngUrl);
+        var bytes  = await res.arrayBuffer();
+        return { bytes:bytes, pageW:pdfW, pageH:pdfH };
+      }
+
+      // ── helper: download blob ──
+      function downloadBlob(bytes, filename) {
+        var blob = new Blob([bytes], { type:'application/pdf' });
+        var url  = URL.createObjectURL(blob);
+        var a    = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      if (mergeMode === 'merge' || total === 1) {
+        // ── MERGE: all images into one PDF ──
+        var pdfDoc = await PDFDocument.create();
+        for (var i = 0; i < total; i++) {
+          var processed = await processImage(imageQueue[i]);
+          var pdfImg = await pdfDoc.embedPng(processed.bytes);
+          var page   = pdfDoc.addPage([processed.pageW, processed.pageH]);
+          page.drawImage(pdfImg, { x:0, y:0, width:processed.pageW, height:processed.pageH });
+          progressBar.style.width = Math.round(((i+1)/total)*90) + '%';
+        }
+        var pdfBytes = await pdfDoc.save();
+        downloadBlob(pdfBytes, 'PDF_Forge.pdf');
+
+      } else {
+        // ── SEPARATE: one PDF per image ──
+        for (var j = 0; j < total; j++) {
+          var singleDoc = await PDFDocument.create();
+          var proc      = await processImage(imageQueue[j]);
+          var singleImg = await singleDoc.embedPng(proc.bytes);
+          var singlePg  = singleDoc.addPage([proc.pageW, proc.pageH]);
+          singlePg.drawImage(singleImg, { x:0, y:0, width:proc.pageW, height:proc.pageH });
+          var singleBytes = await singleDoc.save();
+          // small delay between downloads so browser doesn't block
+          await new Promise(function(r){ setTimeout(r, 300); });
+          var baseName = imageQueue[j].name.replace(/\.[^.]+$/, '');
+          downloadBlob(singleBytes, 'PDF_Forge_' + (j+1) + '_' + baseName + '.pdf');
+          progressBar.style.width = Math.round(((j+1)/total)*90) + '%';
+        }
+      }
+
+      progressBar.style.width = '100%';
+      setTimeout(function(){ progressWrap.style.display='none'; }, 700);
+      convertBtn.disabled = false;
+      convertBtn.classList.add('success');
+      btnIcon.className   = 'fa-solid fa-circle-check';
+      var doneMsg = (mergeMode === 'separate' && total > 1)
+        ? (lang==='ar' ? 'تم تحميل '+total+' ملفات PDF! 🎉' : total+' PDF files downloaded! 🎉')
+        : (lang==='ar' ? 'تم التحميل! 🎉' : 'Downloaded! 🎉');
+      btnText.innerHTML = doneMsg;
+      setStep(3);
+      showToast('success', lang==='ar'
+        ? '🎉 تم تحويل '+total+' صورة بجودة كاملة!'
+        : '🎉 '+total+' image(s) converted successfully!');
+
+    } catch(err) {
+      console.error(err);
+      convertBtn.disabled = false;
+      btnIcon.className   = 'fa-solid fa-wand-magic-sparkles';
+      btnText.innerHTML   = lang==='ar' ? 'تحويل وتحميل PDF' : 'Convert & Download PDF';
+      progressWrap.style.display = 'none';
+      showToast('error', lang==='ar' ? 'حدث خطأ، حاول مجدداً' : 'An error occurred, please retry');
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
