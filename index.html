@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -8,20 +8,171 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="PDF Forge" />
   <meta name="format-detection" content="telephone=no" />
-  <title>تحويل صورة إلى PDF مجاناً | بدون رفع ملفات | PDF Forge</title>
-   <link rel="icon" type="image/png" href="favicon-32x32.png">
-  <meta name="description" content="حوّل أي صورة PNG أو JPG إلى PDF مجاناً في ثوانٍ — يعمل مباشرةً في المتصفح بدون رفع ملفاتك إلى الإنترنت." />
-  <meta name="keywords" content="تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, convert image to pdf, pdf converter free" />
+
+  <!-- ═══ FAVICON ═══════════════════════════════════════════ -->
+  <link rel="icon" type="image/x-icon"      href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32"  href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16"  href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180"     href="favicon-180.png" />
+  <link rel="icon" type="image/svg+xml"     href="favicon.svg" />
+
+  <!-- ═══ PWA — Progressive Web App ════════════════════════════════ -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="msapplication-TileColor" content="#2563eb" />
+  <meta name="msapplication-TileImage" content="icon-192.png" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <!-- ═══ SEO — MULTILINGUAL ════════════════════════════════ -->
+  <!-- Default (English) — used by bots that don't run JS -->
+  <title id="meta-title">Free Image to PDF Converter | No Upload | PDF Forge</title>
+  <meta id="meta-desc"     name="description"   content="Convert any PNG or JPG image to PDF for free in seconds — works directly in your browser with no file upload to the internet." />
+  <meta id="meta-keywords" name="keywords"       content="convert image to pdf, jpg to pdf, png to pdf, free pdf converter, image pdf online" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="تحويل صورة إلى PDF مجاناً — PDF Forge" />
-  <meta property="og:description" content="أداة مجانية تحوّل صورك إلى PDF في ثوانٍ، تعمل بالكامل على جهازك." />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"PDF Forge","applicationCategory":"UtilitiesApplication","operatingSystem":"Web, Android, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+
+  <!-- Open Graph (Facebook · Messenger · Instagram · Reddit · GitHub previews) -->
+  <meta property="og:type"        content="website" />
+  <meta id="og-title"       property="og:title"       content="Free Image to PDF Converter — PDF Forge" />
+  <meta id="og-description" property="og:description" content="Free tool that converts your images to PDF in seconds, runs 100% on your device — no uploads, no sign-up." />
+  <meta id="og-url"         property="og:url"         content="" />
+  <meta property="og:site_name"   content="PDF Forge" />
+  <meta property="og:locale"      content="en_US" />
+  <meta property="og:locale:alternate" content="ar_SA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <!-- Preview image for social sharing -->
+  <meta property="og:image"        content="pdf.jpg" />
+  <meta property="og:image:width"  content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt"    content="PDF Forge — Image to PDF Converter" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta id="tw-title"       name="twitter:title"       content="Free Image to PDF Converter — PDF Forge" />
+  <meta id="tw-description" name="twitter:description" content="Convert PNG/JPG to PDF instantly in your browser — free, private, no upload." />
+  <meta name="twitter:image"       content="pdf.jpg" />
+  <meta name="twitter:site"        content="@PDFForge" />
+
+  <!-- Telegram & WhatsApp read og: tags — already covered above -->
+
+  <!-- ═══ CANONICAL URL ════════════════════════════════════
+       ✅ الصواب: يجب أن يكون الرابط الأساسي للموقع هنا مباشرة في HTML
+          بدون تغييره بـ JavaScript — محركات البحث تفضل القراءة من HTML
+          مثال: href="https://pdf-forge-online.netlify.app/"
+       ❌ الخطأ: تغييره بـ JS يربك خوارزميات الأرشفة ويسبب التردد
+  ════════════════════════════════════════════════════════ -->
+  <link rel="canonical" href="https://pdf-forge-online.netlify.app/" />
+
+  <!-- ═══ HREFLANG — بديل احترافي لمتعدد اللغات بدل تغيير canonical ════
+       هذا هو الحل الصحيح لـ SEO متعدد اللغات: كل لغة بـ hreflang خاصة
+       وجميعهم يشتركون في نفس canonical الأساسي
+  ═══════════════════════════════════════════════════════════════════ -->
+  <link rel="alternate" hreflang="ar" href="https://pdf-forge-online.netlify.app/" />
+  <link rel="alternate" hreflang="en" href="https://pdf-forge-online.netlify.app/" />
+  <link rel="alternate" hreflang="fr" href="https://pdf-forge-online.netlify.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://pdf-forge-online.netlify.app/" />
+
+  <!-- Schema.org structured data (multilingual) -->
+  <script type="application/ld+json" id="schema-json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Forge",
+    "url": "https://pdf-forge-online.netlify.app/",
+    "description": "Free online tool to convert images (PNG, JPG, WEBP) to PDF instantly in your browser — no file upload, 100% private.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web, Android, iOS",
+    "inLanguage": ["en", "ar", "fr"],
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- ═══ SOCIAL META AUTO-UPDATE (runs before render) ══════ -->
+  <script>
+  (function() {
+    // Translations for social previews
+    var socialMeta = {
+      en: {
+        title:       'Free Image to PDF Converter — PDF Forge',
+        description: 'Convert PNG/JPG to PDF instantly in your browser — free, private, no upload required.',
+        keywords:    'convert image to pdf, jpg to pdf, png to pdf, free pdf converter',
+        pageTitle:   'Free Image to PDF Converter | No Upload | PDF Forge',
+        ogLocale:    'en_US'
+      },
+      ar: {
+        title:       'تحويل صورة إلى PDF مجاناً — PDF Forge',
+        description: 'حوّل صورك PNG أو JPG إلى PDF في ثوانٍ داخل متصفحك — مجاناً وبدون رفع ملفاتك للإنترنت.',
+        keywords:    'تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, محول PDF مجاني',
+        pageTitle:   'تحويل صورة إلى PDF مجاناً | بدون رفع ملفات | PDF Forge',
+        ogLocale:    'ar_SA'
+      },
+      fr: {
+        title:       'Convertisseur d\'images en PDF gratuit — PDF Forge',
+        description: 'Convertissez vos images PNG/JPG en PDF en quelques secondes dans votre navigateur — gratuit, privé, sans envoi de fichiers.',
+        keywords:    'convertir image en pdf, jpg en pdf, png en pdf, convertisseur pdf gratuit',
+        pageTitle:   'Convertisseur d\'images en PDF gratuit | Sans envoi | PDF Forge',
+        ogLocale:    'fr_FR'
+      }
+    };
+
+    // Detect language: saved pref → browser lang → default English
+    var supported = ['ar', 'en', 'fr'];
+    var lang = 'en';
+    try {
+      var saved = localStorage.getItem('pdfforge_lang');
+      if (saved && supported.indexOf(saved) !== -1) {
+        lang = saved;
+      } else {
+        var bl = (navigator.languages || [navigator.language || 'en']);
+        for (var i = 0; i < bl.length; i++) {
+          var code = bl[i].toLowerCase().split('-')[0];
+          if (supported.indexOf(code) !== -1) { lang = code; break; }
+        }
+      }
+    } catch(e) {}
+
+    var m = socialMeta[lang] || socialMeta['en'];
+    var url = window.location.href;
+
+    function setMeta(id, val)  { var el = document.getElementById(id); if (el) el.setAttribute('content', val); }
+    function setMetaName(n, v) { var el = document.querySelector('meta[name="'+n+'"]'); if (el) el.setAttribute('content', v); }
+
+    document.getElementById('meta-title').textContent   = m.pageTitle;
+    document.getElementById('meta-desc').setAttribute('content', m.description);
+    document.getElementById('meta-keywords').setAttribute('content', m.keywords);
+    setMeta('og-title',       m.title);
+    setMeta('og-description', m.description);
+    setMeta('og-url',         url); // ✅ og:url يُقرأ بـ JS من Facebook/Twitter — هذا صحيح
+    setMeta('tw-title',       m.title);
+    setMeta('tw-description', m.description);
+    document.querySelector('meta[property="og:locale"]').setAttribute('content', m.ogLocale);
+
+    // ── CANONICAL: لا نلمسه بـ JS — الرابط الأساسي ثابت في HTML مباشرة
+    //    (تعديله بـ JS يربك خوارزميات Google ويسبب تردداً في الأرشفة)
+
+    // ── SCHEMA.ORG: نحدّث url فقط لوسائل التواصل الاجتماعي التي تقرأ JS
+    //    لكن نتجنب الكتابة الكاملة حفاظاً على البيانات المنظمة الأصلية
+    var schemaEl = document.getElementById('schema-json');
+    if (schemaEl) {
+      try {
+        var schemaData = JSON.parse(schemaEl.textContent);
+        // نُبقي url ثابتاً من HTML — لا نستبدله بـ window.location.href
+        // schemaData.url = window.location.href; // ← محذوف عمداً
+        schemaEl.textContent = JSON.stringify(schemaData);
+      } catch(e) {}
+    }
+
+    // Set html lang/dir early so page renders correctly
+    document.documentElement.lang = lang;
+    document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+
+    // Store detected lang for the main JS to pick up
+    window._initLang = lang;
+  })();
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -76,26 +227,145 @@
     html.dark .seg-btn      { background: #1e293b; border-color: var(--line); color: var(--slate); }
     html.dark .add-more-btn:hover { background: #1e3a5f; }
 
-    /* LANG BAR */
-    .lang-bar {
-      background: var(--ink);
+    /* ══ PWA INSTALL BANNER ══════════════════════════════════════════ */
+    #pwa-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-top: 1px solid rgba(37,99,235,.35);
+      padding: 14px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      height: 46px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      gap: 14px;
+      z-index: 9998;
+      box-shadow: 0 -8px 32px rgba(0,0,0,.35);
+      transform: translateY(100%);
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
     }
-    .lang-bar-brand { display:flex; align-items:center; gap:8px; color:#fff; font-size:13px; font-weight:600; opacity:.85; }
-    .lang-bar-brand i { color: var(--gold); font-size:15px; }
-    .lang-switcher { display:flex; gap:4px; background:rgba(255,255,255,.08); border-radius:8px; padding:3px; }
-    .lang-btn { background:transparent; border:none; color:rgba(255,255,255,.6); font-family:inherit; font-size:12px; font-weight:600; padding:4px 14px; border-radius:6px; cursor:pointer; transition:all .2s; }
-    .lang-btn.active { background: var(--accent); color:#fff; }
-    .lang-btn:hover:not(.active) { color:#fff; }
-    .dark-toggle { background:rgba(255,255,255,.08); border:none; color:rgba(255,255,255,.7); width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:13px; transition:all .2s; margin-inline-start:2px; }
+    #pwa-banner.show { transform: translateY(0); }
+    .pwa-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(37,99,235,.4);
+    }
+    .pwa-text { flex: 1; }
+    .pwa-title {
+      font-size: 14px; font-weight: 700; color: #fff;
+      margin-bottom: 2px;
+    }
+    .pwa-sub { font-size: 12px; color: rgba(255,255,255,.55); }
+    .pwa-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .pwa-install-btn {
+      background: #2563eb; color: #fff; border: none;
+      padding: 9px 18px; border-radius: 8px;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .pwa-install-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .pwa-dismiss-btn {
+      background: transparent; color: rgba(255,255,255,.45); border: none;
+      width: 32px; height: 32px; border-radius: 8px;
+      font-size: 16px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: color .2s, background .2s;
+    }
+    .pwa-dismiss-btn:hover { color: #fff; background: rgba(255,255,255,.08); }
+    #offline-bar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #dc2626; color: #fff;
+      text-align: center; font-size: 13px; font-weight: 700;
+      padding: 8px 16px;
+      z-index: 10000;
+      transform: translateY(-100%);
+      transition: transform .3s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    #offline-bar.show { transform: translateY(0); }
+
+    /* LANG BAR */
+    .lang-bar { background:var(--ink); display:flex; align-items:center; justify-content:space-between; padding:0 24px; height:46px; position:sticky; top:0; z-index:100; }
+    html.dark .lang-bar { background:#020817; }
+    .lang-bar-brand { display:flex; align-items:center; gap:8px; color:#fff; font-size:13px; font-weight:700; opacity:.9; letter-spacing:.3px; }
+    .lang-bar-brand i { color:var(--gold); font-size:15px; }
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-btn { background:transparent; border:none; color:rgba(255,255,255,.55); font-family:inherit; font-size:12px; font-weight:600; padding:5px 14px; border-radius:6px; cursor:pointer; transition:all .2s; }
+    .lang-btn.active { background:var(--accent); color:#fff; }
+    .lang-btn:hover:not(.active) { color:#fff; background:rgba(255,255,255,.08); }
+    .dark-toggle { background:rgba(255,255,255,.08); border:none; color:rgba(255,255,255,.65); width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px; transition:all .2s; margin-inline-end:6px; }
     .dark-toggle:hover { background:rgba(255,255,255,.15); color:#fff; }
+
+    /* LANG DROPDOWN */
+    .lang-dropdown { position:relative; }
+    .lang-drop-btn {
+      background:rgba(255,255,255,.08);
+      border:none;
+      color:rgba(255,255,255,.85);
+      font-family:inherit;
+      font-size:12px;
+      font-weight:600;
+      padding:6px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      transition:all .2s;
+      white-space:nowrap;
+    }
+    .lang-drop-btn:hover { background:rgba(255,255,255,.15); color:#fff; }
+    .lang-drop-btn i.fa-globe { font-size:13px; color:var(--gold); }
+    .lang-drop-arrow { font-size:10px; transition:transform .25s ease; opacity:.7; }
+    .lang-dropdown.open .lang-drop-arrow { transform:rotate(180deg); }
+    .lang-drop-menu {
+      position:absolute;
+      top:calc(100% + 8px);
+      inset-inline-start:0;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:10px;
+      box-shadow:0 8px 24px rgba(0,0,0,.15);
+      min-width:150px;
+      overflow:hidden;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-6px);
+      transition:opacity .2s ease, transform .2s ease;
+      z-index:200;
+    }
+    .lang-dropdown.open .lang-drop-menu {
+      opacity:1;
+      pointer-events:all;
+      transform:translateY(0);
+    }
+    html.dark .lang-drop-menu { background:#1e293b; border-color:var(--line); }
+    .lang-drop-item {
+      width:100%;
+      background:none;
+      border:none;
+      padding:10px 14px;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:600;
+      color:var(--ink);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition:background .15s;
+      text-align:start;
+    }
+    .lang-drop-item:hover { background:var(--surf); }
+    .lang-drop-item.active { color:var(--accent); background:#eff6ff; }
+    html.dark .lang-drop-item { color:var(--ink2); }
+    html.dark .lang-drop-item:hover { background:#0f172a; }
+    html.dark .lang-drop-item.active { background:#1e3a5f; color:#93c5fd; }
+    .lang-drop-flag { font-size:16px; line-height:1; }
 
     /* HEADER */
     .header { background:var(--white); border-bottom:1px solid var(--line); padding:28px 32px 24px; text-align:center; }
@@ -121,7 +391,7 @@
     /* TWO-COLUMN WORKSPACE */
     .workspace { display:flex; gap:20px; align-items:flex-start; }
     .workspace-left  { flex:1; min-width:0; display:flex; flex-direction:column; gap:16px; }
-    .workspace-right { width:220px; flex-shrink:0; position:sticky; top:70px; }
+    .workspace-right { width:220px; flex-shrink:0; position:sticky; top:20px; }
 
     /* LIVE PREVIEW PANEL */
     .preview-panel {
@@ -227,6 +497,52 @@
     .queue-remove:hover { color:var(--red); }
     .add-more-btn { width:100%; margin-top:8px; background:none; border:1px dashed var(--line); border-radius:8px; padding:9px; font-family:inherit; font-size:13px; font-weight:600; color:var(--accent); cursor:pointer; transition:all .2s; }
     .add-more-btn:hover { background:#eff6ff; border-color:var(--accent); }
+    .add-more-btn:disabled { opacity:.4; cursor:not-allowed; border-color:var(--line); color:var(--muted); }
+    .add-more-btn:disabled:hover { background:none; border-color:var(--line); }
+
+    /* QUEUE LIMIT INDICATOR */
+    .queue-limit-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      transition: all .3s;
+    }
+    .queue-limit-bar.warn  { background:#fffbeb; border-color:#f59e0b; }
+    .queue-limit-bar.full  { background:#fef2f2; border-color:#dc2626; }
+    html.dark .queue-limit-bar       { background:#0f172a; }
+    html.dark .queue-limit-bar.warn  { background:#451a03; border-color:#f59e0b; }
+    html.dark .queue-limit-bar.full  { background:#450a0a; border-color:#dc2626; }
+    .limit-track {
+      flex: 1;
+      height: 5px;
+      background: var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .limit-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width .35s ease, background .35s ease;
+      background: var(--accent);
+    }
+    .limit-fill.warn { background: var(--gold); }
+    .limit-fill.full { background: var(--red); }
+    .limit-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color .3s;
+      min-width: 36px;
+      text-align: end;
+    }
+    .limit-label.warn { color: #d97706; }
+    .limit-label.full { color: var(--red); }
 
     /* SETTINGS PANEL */
     .settings-panel { background:var(--surf); border:1px solid var(--line); border-radius:var(--r); padding:16px; display:flex; flex-direction:column; gap:14px; }
@@ -274,41 +590,6 @@
     .feat i { font-size:20px; color:var(--accent); margin-bottom:6px; display:block; }
     .feat-label { font-size:11px; font-weight:600; color:var(--slate); line-height:1.4; }
 
-    /* ADS */
-    .ad-slot {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .ad-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      opacity: .6;
-    }
-    .ad-placeholder {
-      background: var(--surf);
-      border: 1px dashed var(--line);
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 500;
-    }
-    .ad-placeholder i { font-size: 22px; opacity: .4; }
-    .ad-slot-banner .ad-placeholder { width:100%; max-width:728px; height:90px; }
-    .ad-slot-square .ad-placeholder { width:300px; height:250px; }
-    /* hide placeholder text in production — keep only for dev */
-    html.dark .ad-placeholder { background: #0f172a; }
-
     /* ARTICLES */
     .articles-section { background:var(--white); border-top:1px solid var(--line); padding:52px 20px; }
     .articles-inner { max-width:960px; margin:0 auto; }
@@ -346,6 +627,156 @@
     .footer-divider { width:40px; height:2px; background:var(--accent); margin:10px auto; border-radius:2px; }
     .copyright { color:rgba(255,255,255,.4); font-size:12px; line-height:1.8; }
 
+    /* SHARE SECTION */
+    .share-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .share-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,.18), transparent);
+      pointer-events: none;
+    }
+    html.dark .share-section { background: linear-gradient(135deg, #020817 0%, #0f172a 50%, #020817 100%); }
+    .share-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .share-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.8);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      letter-spacing: .3px;
+    }
+    .share-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      letter-spacing: -.3px;
+    }
+    .share-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      white-space: nowrap;
+    }
+    .share-btn:hover { transform: translateY(-3px); opacity: .92; }
+    .share-btn i { font-size: 15px; }
+    .share-twitter  { background: #000;    color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+    .share-facebook { background: #1877f2; color: #fff; box-shadow: 0 4px 14px rgba(24,119,242,.35); }
+    .share-telegram { background: #229ed9; color: #fff; box-shadow: 0 4px 14px rgba(34,158,217,.35); }
+    .share-whatsapp { background: #25d366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,.35); }
+    .share-reddit   { background: #ff4500; color: #fff; box-shadow: 0 4px 14px rgba(255,69,0,.35); }
+    .share-copy     { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.15); box-shadow: none; }
+    .share-copy:hover { background: rgba(255,255,255,.18); }
+    .share-copy.copied { background: #059669; border-color: #059669; box-shadow: 0 4px 14px rgba(5,150,105,.35); }
+
+    /* PREVIEW NAVIGATION */
+    .preview-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      gap: 6px;
+    }
+    .preview-nav-btn {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--slate);
+      transition: all .18s;
+      flex-shrink: 0;
+    }
+    .preview-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .preview-nav-btn:disabled { opacity: .35; cursor: default; }
+    html.dark .preview-nav-btn { background: #1e293b; border-color: var(--line); }
+    .preview-counter {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      flex: 1;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* DRAG & DROP REORDER */
+    .queue-item {
+      cursor: grab;
+      user-select: none;
+    }
+    .queue-item:active { cursor: grabbing; }
+    .queue-item.drag-over {
+      border-color: var(--accent);
+      background: #eff6ff;
+      transform: scale(1.01);
+    }
+    html.dark .queue-item.drag-over { background: #1e3a5f; }
+    .queue-item.dragging {
+      opacity: .45;
+      border-style: dashed;
+    }
+    .queue-drag-handle {
+      color: var(--muted);
+      font-size: 13px;
+      cursor: grab;
+      padding: 0 2px;
+      flex-shrink: 0;
+      transition: color .15s;
+    }
+    .queue-drag-handle:hover { color: var(--slate); }
+    .queue-item:active .queue-drag-handle { cursor: grabbing; }
+    .queue-order-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
@@ -362,17 +793,69 @@
 </head>
 <body>
 
-<!-- LANG BAR -->
-<div class="lang-bar">
-  <div class="lang-bar-brand">
-    <i class="fa-solid fa-bolt-lightning"></i>
-    <span>PDF Forge</span>
+<!-- ══ OFFLINE INDICATOR BAR ══════════════════════════════════════ -->
+<div id="offline-bar">
+  <i class="fa-solid fa-wifi-slash"></i>
+  <span id="offlineMsg">أنت غير متصل — التطبيق يعمل بدون إنترنت ✅</span>
+</div>
+
+<!-- ══ PWA INSTALL BANNER ══════════════════════════════════════════ -->
+<div id="pwa-banner" role="banner" aria-label="تثبيت التطبيق">
+  <div class="pwa-icon">📄</div>
+  <div class="pwa-text">
+    <div class="pwa-title t"
+      data-ar="ثبّت PDF Forge على جهازك"
+      data-en="Install PDF Forge on your device"
+      data-fr="Installer PDF Forge sur votre appareil">ثبّت PDF Forge على جهازك</div>
+    <div class="pwa-sub t"
+      data-ar="يعمل بدون إنترنت · سريع · بدون متجر تطبيقات"
+      data-en="Works offline · Fast · No app store needed"
+      data-fr="Fonctionne hors ligne · Rapide · Sans app store">يعمل بدون إنترنت · سريع · بدون متجر تطبيقات</div>
   </div>
+  <div class="pwa-actions">
+    <button class="pwa-install-btn" id="pwaInstallBtn" onclick="pwaInstall()">
+      <span class="t" data-ar="تثبيت" data-en="Install" data-fr="Installer">تثبيت</span>
+    </button>
+    <button class="pwa-dismiss-btn" onclick="pwaDismiss()" aria-label="إغلاق">✕</button>
+  </div>
+</div>
+
+<!-- TOP NAV BAR -->
+<div class="lang-bar">
   <div class="lang-switcher">
-    <button class="lang-btn active" data-lang="ar">عربي</button>
-    <button class="lang-btn" data-lang="en">English</button>
-    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">
+    <button class="dark-toggle" onclick="toggleDark()">
       <i class="fa-solid fa-moon" id="darkIcon"></i>
+    </button>
+    <!-- Language Dropdown -->
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-drop-btn" id="langDropBtn" onclick="toggleLangMenu()">
+        <i class="fa-solid fa-globe"></i>
+        <span id="langDropLabel">عربي</span>
+        <i class="fa-solid fa-chevron-down lang-drop-arrow" id="langDropArrow"></i>
+      </button>
+      <div class="lang-drop-menu" id="langDropMenu">
+        <button class="lang-drop-item active" data-lang="ar" onclick="selectLang('ar')">
+          <span class="lang-drop-flag">🇸🇦</span>
+          <span>عربي</span>
+        </button>
+        <button class="lang-drop-item" data-lang="en" onclick="selectLang('en')">
+          <span class="lang-drop-flag">🇬🇧</span>
+          <span>English</span>
+        </button>
+        <button class="lang-drop-item" data-lang="fr" onclick="selectLang('fr')">
+          <span class="lang-drop-flag">🇫🇷</span>
+          <span>Français</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="lang-bar-brand">
+    <span>PDF Forge</span>
+    <i class="fa-solid fa-bolt-lightning"></i>
+    <button id="pwaNavBtn" onclick="pwaInstall()" title="تثبيت التطبيق"
+      style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:7px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px;transition:all .2s;margin-inline-start:6px;">
+      <i class="fa-solid fa-download" style="font-size:10px"></i>
+      <span class="t" data-ar="تثبيت" data-en="Install" data-fr="Installer" style="margin-inline-start:4px">تثبيت</span>
     </button>
   </div>
 </div>
@@ -386,10 +869,11 @@
 <!-- HEADER -->
 <div class="header">
   <div class="logo-icon"><i class="fa-solid fa-file-export"></i></div>
-  <h1 class="t" data-ar="محوّل <span>الصور</span> إلى PDF" data-en="Image to <span>PDF</span> Converter">محوّل <span>الصور</span> إلى PDF</h1>
+  <h1 class="t" data-ar="محوّل <span>الصور</span> إلى PDF" data-en="Image to <span>PDF</span> Converter" data-fr="Convertisseur d'<span>Images</span> en PDF">محوّل <span>الصور</span> إلى PDF</h1>
   <p class="t"
     data-ar="ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة."
-    data-en="Upload your image and we'll instantly convert it to a high-quality PDF — free, no cloud upload.">ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة.</p>
+    data-en="Upload your image and we'll instantly convert it to a high-quality PDF — free, no cloud upload."
+    data-fr="Téléversez votre image et nous la convertirons instantanément en PDF haute qualité — gratuitement, sans envoi vers le cloud.">ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة.</p>
 </div>
 
 <!-- MAIN -->
@@ -400,25 +884,25 @@
     <div class="steps">
       <div class="step active" id="step1">
         <i class="fa-solid fa-image"></i>
-        <span class="t" data-ar="١. اختر صورة" data-en="1. Choose Image">١. اختر صورة</span>
+        <span class="t" data-ar="١. اختر صورة" data-en="1. Choose Image" data-fr="1. Choisir">١. اختر صورة</span>
       </div>
       <div class="step" id="step2">
         <i class="fa-solid fa-sliders"></i>
-        <span class="t" data-ar="٢. إعدادات" data-en="2. Settings">٢. إعدادات</span>
+        <span class="t" data-ar="٢. إعدادات" data-en="2. Settings" data-fr="2. Réglages">٢. إعدادات</span>
       </div>
       <div class="step" id="step3">
         <i class="fa-solid fa-download"></i>
-        <span class="t" data-ar="٣. تحميل" data-en="3. Download">٣. تحميل</span>
+        <span class="t" data-ar="٣. تحميل" data-en="3. Download" data-fr="3. Télécharger">٣. تحميل</span>
       </div>
     </div>
 
     <!-- Drop Zone -->
     <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
       <div class="dz-icon-wrap"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-      <div class="dz-title t" data-ar="اسحب وأفلت الصور هنا" data-en="Drag & Drop images here">اسحب وأفلت الصور هنا</div>
-      <div class="dz-sub t" data-ar="أو اضغط لاختيار صورة أو أكثر من جهازك" data-en="or click to select one or more images">أو اضغط لاختيار صورة أو أكثر من جهازك</div>
+      <div class="dz-title t" data-ar="اسحب وأفلت الصور هنا" data-en="Drag & Drop images here" data-fr="Glissez-déposez vos images ici">اسحب وأفلت الصور هنا</div>
+      <div class="dz-sub t" data-ar="أو اضغط لاختيار صورة أو أكثر من جهازك" data-en="or click to select one or more images" data-fr="ou cliquez pour sélectionner une ou plusieurs images">أو اضغط لاختيار صورة أو أكثر من جهازك</div>
       <div class="dz-badge"><span>PNG</span><span>JPG</span><span>JPEG</span><span>WEBP</span></div>
-      <div class="paste-hint t" data-ar="💡 يمكنك لصق صورة بـ Ctrl+V" data-en="💡 You can also paste with Ctrl+V">💡 يمكنك لصق صورة بـ Ctrl+V</div>
+      <div class="paste-hint t" data-ar="💡 يمكنك لصق صورة بـ Ctrl+V" data-en="💡 You can also paste with Ctrl+V" data-fr="💡 Vous pouvez aussi coller avec Ctrl+V">💡 يمكنك لصق صورة بـ Ctrl+V</div>
       <input type="file" id="fileInput" accept="image/*" multiple />
     </div>
 
@@ -431,45 +915,52 @@
         <!-- Queue -->
         <div id="queueSection">
           <div class="queue-header">
-            <span class="preview-label t" data-ar="الصور المختارة" data-en="Selected Images">الصور المختارة</span>
+            <span class="preview-label t" data-ar="الصور المختارة" data-en="Selected Images" data-fr="Images sélectionnées">الصور المختارة</span>
             <button class="change-btn" onclick="resetAll()">
               <i class="fa-solid fa-trash"></i>
-              <span class="t" data-ar="مسح الكل" data-en="Clear all">مسح الكل</span>
+              <span class="t" data-ar="مسح الكل" data-en="Clear all" data-fr="Tout effacer">مسح الكل</span>
             </button>
           </div>
           <div class="queue-list" id="queueList"></div>
-          <button class="add-more-btn t" data-ar="+ إضافة المزيد" data-en="+ Add more" onclick="document.getElementById('fileInput').click()">+ إضافة المزيد</button>
+          <button class="add-more-btn t" id="addMoreBtn" data-ar="+ إضافة المزيد" data-en="+ Add more" data-fr="+ Ajouter plus" onclick="document.getElementById('fileInput').click()">+ إضافة المزيد</button>
+          <!-- Limit indicator bar -->
+          <div class="queue-limit-bar" id="limitBar">
+            <div class="limit-track">
+              <div class="limit-fill" id="limitFill" style="width:0%"></div>
+            </div>
+            <span class="limit-label" id="limitLabel">0 / 15</span>
+          </div>
         </div>
 
         <!-- Settings Panel -->
         <div class="settings-panel" id="settingsPanel">
           <div class="settings-title">
             <i class="fa-solid fa-sliders"></i>
-            <span class="t" data-ar="خيارات الصفحة" data-en="Page Options">خيارات الصفحة</span>
+            <span class="t" data-ar="خيارات الصفحة" data-en="Page Options" data-fr="Options de page">خيارات الصفحة</span>
           </div>
 
           <!-- Merge -->
           <div class="setting-group" id="mergeGroup" style="display:none">
-            <label class="setting-label t" data-ar="طريقة التصدير" data-en="Export Mode">طريقة التصدير</label>
+            <label class="setting-label t" data-ar="طريقة التصدير" data-en="Export Mode" data-fr="Mode d'export">طريقة التصدير</label>
             <div class="seg-control" id="mergeCtrl">
               <button class="seg-btn active" data-val="merge">
                 <i class="fa-solid fa-layer-group"></i>
-                <span class="t" data-ar="دمج في PDF واحد" data-en="Merge into one PDF">دمج في PDF واحد</span>
+                <span class="t" data-ar="دمج في PDF واحد" data-en="Merge into one PDF" data-fr="Fusionner en un PDF">دمج في PDF واحد</span>
               </button>
               <button class="seg-btn" data-val="separate">
                 <i class="fa-solid fa-copy"></i>
-                <span class="t" data-ar="ملف PDF لكل صورة" data-en="Separate PDF per image">ملف PDF لكل صورة</span>
+                <span class="t" data-ar="ملف PDF لكل صورة" data-en="Separate PDF per image" data-fr="PDF séparé par image">ملف PDF لكل صورة</span>
               </button>
             </div>
           </div>
 
           <!-- Page Size -->
           <div class="setting-group">
-            <label class="setting-label t" data-ar="حجم الصفحة" data-en="Page Size">حجم الصفحة</label>
+            <label class="setting-label t" data-ar="حجم الصفحة" data-en="Page Size" data-fr="Taille de la page">حجم الصفحة</label>
             <div class="seg-control" id="pageSizeCtrl">
               <button class="seg-btn active" data-val="original">
                 <i class="fa-solid fa-expand"></i>
-                <span class="t" data-ar="أصلي" data-en="Original">أصلي</span>
+                <span class="t" data-ar="أصلي" data-en="Original" data-fr="Original">أصلي</span>
               </button>
               <button class="seg-btn" data-val="a4">
                 <i class="fa-solid fa-file"></i><span>A4</span>
@@ -479,45 +970,45 @@
 
           <!-- Orientation -->
           <div class="setting-group" id="orientGroup" style="display:none">
-            <label class="setting-label t" data-ar="اتجاه الصفحة" data-en="Orientation">اتجاه الصفحة</label>
+            <label class="setting-label t" data-ar="اتجاه الصفحة" data-en="Orientation" data-fr="Orientation">اتجاه الصفحة</label>
             <div class="seg-control" id="orientCtrl">
               <button class="seg-btn active" data-val="portrait">
                 <i class="fa-solid fa-rectangle-portrait"></i>
-                <span class="t" data-ar="رأسي" data-en="Portrait">رأسي</span>
+                <span class="t" data-ar="رأسي" data-en="Portrait" data-fr="Portrait">رأسي</span>
               </button>
               <button class="seg-btn" data-val="landscape">
                 <i class="fa-solid fa-rectangle-landscape"></i>
-                <span class="t" data-ar="أفقي" data-en="Landscape">أفقي</span>
+                <span class="t" data-ar="أفقي" data-en="Landscape" data-fr="Paysage">أفقي</span>
               </button>
             </div>
           </div>
 
           <!-- Margin -->
           <div class="setting-group">
-            <label class="setting-label t" data-ar="هامش الصفحة" data-en="Page Margin">هامش الصفحة</label>
+            <label class="setting-label t" data-ar="هامش الصفحة" data-en="Page Margin" data-fr="Marge de la page">هامش الصفحة</label>
             <div class="seg-control" id="marginCtrl">
               <button class="seg-btn active" data-val="0">
                 <i class="fa-solid fa-border-none"></i>
-                <span class="t" data-ar="بدون" data-en="None">بدون</span>
+                <span class="t" data-ar="بدون" data-en="None" data-fr="Aucune">بدون</span>
               </button>
               <button class="seg-btn" data-val="30">
                 <i class="fa-solid fa-border-outer"></i>
-                <span class="t" data-ar="متوسط" data-en="Medium">متوسط</span>
+                <span class="t" data-ar="متوسط" data-en="Medium" data-fr="Moyenne">متوسط</span>
               </button>
               <button class="seg-btn" data-val="60">
                 <i class="fa-solid fa-border-all"></i>
-                <span class="t" data-ar="كبير" data-en="Large">كبير</span>
+                <span class="t" data-ar="كبير" data-en="Large" data-fr="Grande">كبير</span>
               </button>
             </div>
           </div>
 
           <!-- Rotation -->
           <div class="setting-group">
-            <label class="setting-label t" data-ar="تدوير الصورة" data-en="Rotate Image">تدوير الصورة</label>
+            <label class="setting-label t" data-ar="تدوير الصورة" data-en="Rotate Image" data-fr="Rotation de l'image">تدوير الصورة</label>
             <div class="seg-control" id="rotateCtrl">
               <button class="seg-btn active" data-val="0">
                 <i class="fa-solid fa-circle-check"></i>
-                <span class="t" data-ar="بدون" data-en="None">بدون</span>
+                <span class="t" data-ar="بدون" data-en="None" data-fr="Aucune">بدون</span>
               </button>
               <button class="seg-btn" data-val="90">
                 <i class="fa-solid fa-rotate-right"></i><span>90°</span>
@@ -536,7 +1027,17 @@
         <div class="preview-panel">
           <div class="preview-panel-head">
             <i class="fa-solid fa-eye"></i>
-            <span class="t" data-ar="معاينة مباشرة" data-en="Live Preview">معاينة مباشرة</span>
+            <span class="t" data-ar="معاينة مباشرة" data-en="Live Preview" data-fr="Aperçu en direct">معاينة مباشرة</span>
+          </div>
+          <!-- Navigation between images in preview -->
+          <div class="preview-nav" id="previewNav" style="display:none">
+            <button class="preview-nav-btn" id="prevPreviewBtn" onclick="navigatePreview(-1)">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <span class="preview-counter" id="previewCounter">1 / 1</span>
+            <button class="preview-nav-btn" id="nextPreviewBtn" onclick="navigatePreview(1)">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
           </div>
           <div class="preview-canvas-wrap" id="previewWrap">
             <div class="page-mock" id="pageMock">
@@ -558,27 +1059,16 @@
     <!-- Convert Button -->
     <button class="convert-btn" id="convertBtn" disabled>
       <i class="fa-solid fa-wand-magic-sparkles" id="btnIcon"></i>
-      <span id="btnText" class="t" data-ar="تحويل وتحميل PDF" data-en="Convert & Download PDF">تحويل وتحميل PDF</span>
+      <span id="btnText" class="t" data-ar="تحويل وتحميل PDF" data-en="Convert & Download PDF" data-fr="Convertir et télécharger PDF">تحويل وتحميل PDF</span>
     </button>
 
     <!-- Features -->
     <div class="features">
-      <div class="feat"><i class="fa-solid fa-lock"></i><div class="feat-label t" data-ar="خاص ١٠٠%" data-en="100% Private">خاص ١٠٠%</div></div>
-      <div class="feat"><i class="fa-solid fa-bolt-lightning"></i><div class="feat-label t" data-ar="فوري وسريع" data-en="Instant & Fast">فوري وسريع</div></div>
-      <div class="feat"><i class="fa-solid fa-star"></i><div class="feat-label t" data-ar="جودة عالية" data-en="High Quality">جودة عالية</div></div>
-    </div>
-
-    <!-- ═══ AD SLOT 1 — أسفل زر التحويل (728×90) ═══
-         ضع كود Monetag أو Adsterra هنا لاحقاً
-         استبدل كل محتوى div.ad-slot بكود الشبكة
-    ══════════════════════════════════════════════ -->
-    <div class="ad-slot ad-slot-banner">
-      <div class="ad-label t" data-ar="إعلان" data-en="Advertisement">إعلان</div>
-      <div class="ad-placeholder">
-        <!-- ضع كود إعلانك هنا -->
-        <!-- Example: <script src="//monetag.com/..."></script> -->
-        <i class="fa-solid fa-rectangle-ad"></i>
-        <span class="t" data-ar="728 × 90 — مكان الإعلان" data-en="728 × 90 — Ad Space">728 × 90 — مكان الإعلان</span>
+      <div class="feat"><i class="fa-solid fa-lock"></i><div class="feat-label t" data-ar="خاص ١٠٠%" data-en="100% Private" data-fr="100% Privé">خاص ١٠٠%</div></div>
+      <div class="feat"><i class="fa-solid fa-bolt-lightning"></i><div class="feat-label t" data-ar="فوري وسريع" data-en="Instant & Fast" data-fr="Rapide et instantané">فوري وسريع</div></div>
+      <div class="feat" id="pwaFeat" onclick="pwaInstall()" style="cursor:pointer;transition:box-shadow .2s,transform .2s" title="تثبيت كتطبيق">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <div class="feat-label t" data-ar="يعمل أوفلاين" data-en="Works Offline" data-fr="Hors ligne">يعمل أوفلاين</div>
       </div>
     </div>
 
@@ -589,9 +1079,9 @@
 <section class="articles-section">
   <div class="articles-inner">
     <div class="articles-header">
-      <div class="articles-tag t" data-ar="📚 مقالات مفيدة" data-en="📚 Helpful Guides">📚 مقالات مفيدة</div>
-      <h2 class="articles-title t" data-ar="كل ما تحتاج معرفته عن PDF" data-en="Everything You Need to Know About PDF">كل ما تحتاج معرفته عن PDF</h2>
-      <p class="articles-sub t" data-ar="مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة" data-en="Short, practical articles answering the most common questions">مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة</p>
+      <div class="articles-tag t" data-ar="📚 مقالات مفيدة" data-en="📚 Helpful Guides" data-fr="📚 Guides utiles">📚 مقالات مفيدة</div>
+      <h2 class="articles-title t" data-ar="كل ما تحتاج معرفته عن PDF" data-en="Everything You Need to Know About PDF" data-fr="Tout ce que vous devez savoir sur le PDF">كل ما تحتاج معرفته عن PDF</h2>
+      <p class="articles-sub t" data-ar="مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة" data-en="Short, practical articles answering the most common questions" data-fr="Articles courts et pratiques répondant aux questions les plus fréquentes">مقالات قصيرة ومفيدة تجيب على أشهر الأسئلة</p>
     </div>
     <div class="articles-grid">
 
@@ -599,60 +1089,50 @@
         <div class="art-card-head">
           <div class="art-icon-wrap" style="background:#eff6ff"><i class="fa-solid fa-mobile-screen" style="color:#2563eb"></i></div>
           <div class="art-meta">
-            <span class="art-tag t" data-ar="الهاتف" data-en="Mobile">الهاتف</span>
-            <span class="art-read t" data-ar="دقيقة واحدة" data-en="1 min read">دقيقة واحدة</span>
+            <span class="art-tag t" data-ar="الهاتف" data-en="Mobile" data-fr="Mobile">الهاتف</span>
+            <span class="art-read t" data-ar="دقيقة واحدة" data-en="1 min read" data-fr="1 min de lecture">دقيقة واحدة</span>
           </div>
         </div>
-        <h3 class="art-title t" data-ar="كيف تحوّل صورة إلى PDF من هاتفك؟" data-en="How to Convert an Image to PDF from Your Phone?">كيف تحوّل صورة إلى PDF من هاتفك؟</h3>
+        <h3 class="art-title t" data-ar="كيف تحوّل صورة إلى PDF من هاتفك؟" data-en="How to Convert an Image to PDF from Your Phone?" data-fr="Comment convertir une image en PDF depuis votre téléphone ?">كيف تحوّل صورة إلى PDF من هاتفك؟</h3>
         <div class="art-body">
           <div class="art-content t"
             data-ar="<p>كثير من الناس يحتاجون إرسال صورة كمستند PDF — سواء لإرسال وثيقة رسمية أو حفظ إيصال أو مشاركة صورة بشكل احترافي.</p><p><strong>الطريقة الأسهل:</strong> افتح موقع PDF Forge من متصفح هاتفك، اختر الصورة، ثم اضغط تحويل — ستحصل على PDF في ثوانٍ بدون تثبيت أي تطبيق.</p><p>✅ يعمل مع Android وiPhone على حدٍّ سواء.</p>"
-            data-en="<p>Many people need to send an image as a PDF — for official paperwork, saving a receipt, or sharing professionally.</p><p><strong>The easiest way:</strong> Open PDF Forge in your phone browser, select the image, hit Convert — PDF in seconds, no app install needed.</p><p>✅ Works on Android and iPhone alike.</p>">
+            data-en="<p>Many people need to send an image as a PDF — for official paperwork, saving a receipt, or sharing professionally.</p><p><strong>The easiest way:</strong> Open PDF Forge in your phone browser, select the image, hit Convert — PDF in seconds, no app install needed.</p><p>✅ Works on Android and iPhone alike.</p>"
+            data-fr="<p>Beaucoup de personnes ont besoin d'envoyer une image en PDF — pour un document officiel, sauvegarder un reçu ou partager professionnellement.</p><p><strong>La méthode la plus simple :</strong> Ouvrez PDF Forge dans le navigateur de votre téléphone, sélectionnez l'image, appuyez sur Convertir — un PDF en quelques secondes, sans installer d'application.</p><p>✅ Fonctionne sur Android et iPhone.</p>">
             <p>كثير من الناس يحتاجون إرسال صورة كمستند PDF — سواء لإرسال وثيقة رسمية أو حفظ إيصال أو مشاركة صورة بشكل احترافي.</p>
             <p><strong>الطريقة الأسهل:</strong> افتح موقع PDF Forge من متصفح هاتفك، اختر الصورة، ثم اضغط تحويل — ستحصل على PDF في ثوانٍ بدون تثبيت أي تطبيق.</p>
             <p>✅ يعمل مع Android وiPhone على حدٍّ سواء.</p>
           </div>
-          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" data-fr="Essayez maintenant ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
         </div>
         <div class="art-toggle-row">
-          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article" data-fr="Lire l'article">اقرأ المقال</span>
           <i class="fa-solid fa-chevron-down art-chevron"></i>
         </div>
       </article>
-
-      <!-- ═══ AD SLOT 2 — بين المقالات (300×250) ═══
-           ضع كود Monetag أو Adsterra هنا لاحقاً
-      ══════════════════════════════════════════════ -->
-      <div class="ad-slot ad-slot-square">
-        <div class="ad-label t" data-ar="إعلان" data-en="Advertisement">إعلان</div>
-        <div class="ad-placeholder">
-          <!-- ضع كود إعلانك هنا -->
-          <i class="fa-solid fa-rectangle-ad"></i>
-          <span class="t" data-ar="300 × 250 — مكان الإعلان" data-en="300 × 250 — Ad Space">300 × 250 — مكان الإعلان</span>
-        </div>
-      </div>
 
       <article class="art-card" onclick="toggleArticle(this)">
         <div class="art-card-head">
           <div class="art-icon-wrap" style="background:#f0fdf4"><i class="fa-solid fa-shield-halved" style="color:#059669"></i></div>
           <div class="art-meta">
-            <span class="art-tag t" data-ar="الأمان" data-en="Privacy">الأمان</span>
-            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read">دقيقتان</span>
+            <span class="art-tag t" data-ar="الأمان" data-en="Privacy" data-fr="Confidentialité">الأمان</span>
+            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read" data-fr="2 min de lecture">دقيقتان</span>
           </div>
         </div>
-        <h3 class="art-title t" data-ar="هل تحويل الصور أونلاين آمن؟" data-en="Is Online Image Conversion Safe?">هل تحويل الصور أونلاين آمن؟</h3>
+        <h3 class="art-title t" data-ar="هل تحويل الصور أونلاين آمن؟" data-en="Is Online Image Conversion Safe?" data-fr="La conversion d'images en ligne est-elle sécurisée ?">هل تحويل الصور أونلاين آمن؟</h3>
         <div class="art-body">
           <div class="art-content t"
             data-ar="<p>معظم مواقع التحويل ترفع صورتك إلى خوادمها أولاً — وهذا يعني أن ملفاتك الخاصة قد تُخزَّن.</p><p><strong>ما يجعل PDF Forge مختلفاً:</strong> كل شيء يحدث داخل متصفحك فقط. صورتك لا تغادر جهازك أبداً.</p><p>🔒 مثالي للوثائق الحساسة كالهوية والعقود والمستندات الطبية.</p>"
-            data-en="<p>Most conversion sites upload your image to their servers first — meaning your private files may be stored.</p><p><strong>What makes PDF Forge different:</strong> Everything happens inside your browser only. Your image never leaves your device.</p><p>🔒 Perfect for sensitive documents like IDs, contracts, and medical records.</p>">
+            data-en="<p>Most conversion sites upload your image to their servers first — meaning your private files may be stored.</p><p><strong>What makes PDF Forge different:</strong> Everything happens inside your browser only. Your image never leaves your device.</p><p>🔒 Perfect for sensitive documents like IDs, contracts, and medical records.</p>"
+            data-fr="<p>La plupart des sites de conversion envoient votre image à leurs serveurs — ce qui signifie que vos fichiers privés peuvent être stockés.</p><p><strong>Ce qui distingue PDF Forge :</strong> Tout se passe dans votre navigateur uniquement. Votre image ne quitte jamais votre appareil.</p><p>🔒 Parfait pour les documents sensibles comme les pièces d'identité, contrats et dossiers médicaux.</p>">
             <p>معظم مواقع التحويل ترفع صورتك إلى خوادمها أولاً — وهذا يعني أن ملفاتك الخاصة قد تُخزَّن.</p>
             <p><strong>ما يجعل PDF Forge مختلفاً:</strong> كل شيء يحدث داخل متصفحك فقط. صورتك لا تغادر جهازك أبداً.</p>
             <p>🔒 مثالي للوثائق الحساسة كالهوية والعقود والمستندات الطبية.</p>
           </div>
-          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" data-fr="Essayez maintenant ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
         </div>
         <div class="art-toggle-row">
-          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article" data-fr="Lire l'article">اقرأ المقال</span>
           <i class="fa-solid fa-chevron-down art-chevron"></i>
         </div>
       </article>
@@ -661,26 +1141,88 @@
         <div class="art-card-head">
           <div class="art-icon-wrap" style="background:#fdf4ff"><i class="fa-solid fa-file-circle-question" style="color:#9333ea"></i></div>
           <div class="art-meta">
-            <span class="art-tag t" data-ar="أساسيات" data-en="Basics">أساسيات</span>
-            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read">دقيقتان</span>
+            <span class="art-tag t" data-ar="أساسيات" data-en="Basics" data-fr="Fondamentaux">أساسيات</span>
+            <span class="art-read t" data-ar="دقيقتان" data-en="2 min read" data-fr="2 min de lecture">دقيقتان</span>
           </div>
         </div>
-        <h3 class="art-title t" data-ar="متى تحفظ ملفك PDF بدلاً من صورة؟" data-en="When to Save as PDF Instead of an Image?">متى تحفظ ملفك PDF بدلاً من صورة؟</h3>
+        <h3 class="art-title t" data-ar="متى تحفظ ملفك PDF بدلاً من صورة؟" data-en="When to Save as PDF Instead of an Image?" data-fr="Quand enregistrer en PDF plutôt qu'en image ?">متى تحفظ ملفك PDF بدلاً من صورة؟</h3>
         <div class="art-body">
           <div class="art-content t"
             data-ar="<p>الفرق بسيط لكن مهم: الصورة تُعرَض فقط، أما PDF فهو مستند يحافظ على تنسيقه في أي جهاز أو طباعة.</p><p><strong>استخدم PDF عندما:</strong> ترسل وثيقة رسمية، أو تطبع مستنداً، أو تريد ضمان أن يبدو الملف متطابقاً عند الآخرين.</p><p><strong>احتفظ بالصورة عندما:</strong> تنشر على السوشيال ميديا فقط.</p>"
-            data-en="<p>Simple but important: an image is just displayed, while a PDF preserves its formatting on any device or in print.</p><p><strong>Use PDF when:</strong> sending official documents, printing, or ensuring identical appearance for others.</p><p><strong>Keep as image when:</strong> posting on social media only.</p>">
+            data-en="<p>Simple but important: an image is just displayed, while a PDF preserves its formatting on any device or in print.</p><p><strong>Use PDF when:</strong> sending official documents, printing, or ensuring identical appearance for others.</p><p><strong>Keep as image when:</strong> posting on social media only.</p>"
+            data-fr="<p>Simple mais important : une image s'affiche seulement, tandis qu'un PDF conserve sa mise en page sur n'importe quel appareil ou à l'impression.</p><p><strong>Utilisez PDF quand :</strong> vous envoyez des documents officiels, imprimez ou voulez garantir un rendu identique pour tous.</p><p><strong>Gardez l'image quand :</strong> vous publiez uniquement sur les réseaux sociaux.</p>">
             <p>الفرق بسيط لكن مهم: الصورة تُعرَض فقط، أما PDF فهو مستند يحافظ على تنسيقه في أي جهاز أو طباعة.</p>
             <p><strong>استخدم PDF عندما:</strong> ترسل وثيقة رسمية، أو تطبع مستنداً، أو تريد ضمان أن يبدو الملف متطابقاً عند الآخرين.</p>
             <p><strong>احتفظ بالصورة عندما:</strong> تنشر على السوشيال ميديا فقط.</p>
           </div>
-          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
+          <button class="try-btn t" data-ar="جرّب الآن ↑" data-en="Try it now ↑" data-fr="Essayez maintenant ↑" onclick="scrollToTop(event)">جرّب الآن ↑</button>
         </div>
         <div class="art-toggle-row">
-          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article">اقرأ المقال</span>
+          <span class="art-toggle-txt t" data-ar="اقرأ المقال" data-en="Read article" data-fr="Lire l'article">اقرأ المقال</span>
           <i class="fa-solid fa-chevron-down art-chevron"></i>
         </div>
       </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SHARE SECTION -->
+<section class="share-section">
+  <div class="share-inner">
+    <div class="share-badge t"
+      data-ar="💙 أعجبك الموقع؟"
+      data-en="💙 Enjoying PDF Forge?"
+      data-fr="💙 Vous aimez PDF Forge ?">💙 أعجبك الموقع؟</div>
+    <h2 class="share-title t"
+      data-ar="شارك الأداة مع من يحتاجها"
+      data-en="Share this tool with someone who needs it"
+      data-fr="Partagez cet outil avec ceux qui en ont besoin">شارك الأداة مع من يحتاجها</h2>
+    <p class="share-sub t"
+      data-ar="مجانية، خاصة، وتعمل بدون إنترنت — أخبر أصدقاءك بها"
+      data-en="Free, private, and works offline — let your friends know about it"
+      data-fr="Gratuit, privé et fonctionne hors ligne — partagez-le avec vos amis">مجانية، خاصة، وتعمل بدون إنترنت — أخبر أصدقاءك بها</p>
+
+    <div class="share-buttons">
+
+      <!-- Twitter / X -->
+      <button class="share-btn share-twitter" onclick="openShare('twitter')" aria-label="Twitter / X">
+        <i class="fa-brands fa-x-twitter"></i>
+        <span>Twitter / X</span>
+      </button>
+
+      <!-- Facebook -->
+      <button class="share-btn share-facebook" onclick="openShare('facebook')" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+        <span>Facebook</span>
+      </button>
+
+      <!-- Telegram -->
+      <button class="share-btn share-telegram" onclick="openShare('telegram')" aria-label="Telegram">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Telegram</span>
+      </button>
+
+      <!-- WhatsApp -->
+      <button class="share-btn share-whatsapp" onclick="openShare('whatsapp')" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </button>
+
+      <!-- Reddit -->
+      <button class="share-btn share-reddit" onclick="openShare('reddit')" aria-label="Reddit">
+        <i class="fa-brands fa-reddit-alien"></i>
+        <span>Reddit</span>
+      </button>
+
+      <!-- Copy Link -->
+      <button class="share-btn share-copy" id="shareCopy" onclick="copyShareLink()" aria-label="Copy link">
+        <i class="fa-solid fa-link" id="copyIcon"></i>
+        <span id="copyLabel" class="t"
+          data-ar="نسخ الرابط"
+          data-en="Copy Link"
+          data-fr="Copier le lien">نسخ الرابط</span>
+      </button>
 
     </div>
   </div>
@@ -694,12 +1236,14 @@
     <div class="copyright">
       <span class="t"
         data-ar="جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري"
-        data-en="All Rights Reserved &copy; 2025 — <strong>PDF Forge</strong> | Free for personal and commercial use">
+        data-en="All Rights Reserved &copy; 2025 — <strong>PDF Forge</strong> | Free for personal and commercial use"
+        data-fr="Tous droits réservés &copy; 2025 — <strong>PDF Forge</strong> | Gratuit pour un usage personnel et commercial">
         جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري
       </span><br>
       <span class="t"
         data-ar="تعمل بالكامل في المتصفح — لا يتم رفع أي بيانات إلى الخوادم"
-        data-en="Runs entirely in your browser — no data uploaded to any server">
+        data-en="Runs entirely in your browser — no data uploaded to any server"
+        data-fr="Fonctionne entièrement dans votre navigateur — aucune donnée envoyée vers des serveurs">
         تعمل بالكامل في المتصفح — لا يتم رفع أي بيانات إلى الخوادم
       </span>
     </div>
@@ -723,22 +1267,55 @@
     document.getElementById('darkIcon').className = 'fa-solid fa-sun';
   }
 
+  /* ── LANGUAGE DROPDOWN ── */
+  var langLabels = { ar:'عربي', en:'English', fr:'Français' };
+
+  window.toggleLangMenu = function() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  };
+
+  window.selectLang = function(l) {
+    document.getElementById('langDropLabel').textContent = langLabels[l];
+    document.querySelectorAll('.lang-drop-item').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === l);
+    });
+    document.getElementById('langDropdown').classList.remove('open');
+    applyLang(l);
+    // ── حفظ اختيار المستخدم ──
+    localStorage.setItem('pdfforge_lang', l);
+  };
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    var dd = document.getElementById('langDropdown');
+    if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  });
+
   /* ── LANGUAGE ── */
   var lang = 'ar';
+
   window.applyLang = function(l) {
     lang = l;
     document.documentElement.lang = l;
     document.documentElement.dir  = l === 'ar' ? 'rtl' : 'ltr';
-    document.querySelectorAll('.lang-btn').forEach(function(b) {
-      b.classList.toggle('active', b.dataset.lang === l);
-    });
     document.querySelectorAll('.t').forEach(function(el) {
       if (el.dataset[l]) el.innerHTML = el.dataset[l];
     });
+    // تحديث الـ dropdown label والعنصر النشط
+    document.getElementById('langDropLabel').textContent = langLabels[l] || l;
+    document.querySelectorAll('.lang-drop-item').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === l);
+    });
+    // تحديث روابط المشاركة بنص اللغة الجديدة
+    if (typeof buildShareLinks === 'function') buildShareLinks();
   };
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() { applyLang(btn.dataset.lang); });
-  });
+
+  /* ── كشف اللغة عند التحميل ── */
+  (function initLang() {
+    // اللغة تم تحديدها مسبقاً في head script وحُفظت في window._initLang
+    var l = window._initLang || 'en';
+    applyLang(l);
+  })();
 
   /* ── TOAST ── */
   var toastTimer;
@@ -764,6 +1341,56 @@
   window.scrollToTop = function(e) {
     e.stopPropagation();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /* ── SHARE ── */
+  /* ── SHARE ── */
+  var shareText = {
+    en: 'Convert images to PDF for free — no upload, 100% private, works in your browser ⚡',
+    ar: 'حوّل صورك إلى PDF مجاناً — بدون رفع ملفات، خصوصية تامة، يعمل في متصفحك ⚡',
+    fr: 'Convertissez vos images en PDF gratuitement — sans envoi, 100% privé, fonctionne dans votre navigateur ⚡'
+  };
+
+  function openShare(platform) {
+    var url  = encodeURIComponent(window.location.href);
+    var text = encodeURIComponent(shareText[lang] || shareText['en']);
+    var links = {
+      twitter:  'https://twitter.com/intent/tweet?text=' + text + '&url=' + url,
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+      telegram: 'https://t.me/share/url?url=' + url + '&text=' + text,
+      whatsapp: 'https://api.whatsapp.com/send?text=' + text + '%20' + decodeURIComponent(url),
+      reddit:   'https://www.reddit.com/submit?url=' + url + '&title=' + text
+    };
+    if (links[platform]) window.open(links[platform], '_blank', 'noopener,width=600,height=500');
+  }
+  window.openShare = openShare;
+
+  function buildShareLinks() {} // kept for applyLang compatibility
+
+  window.copyShareLink = function() {
+    var btn  = document.getElementById('shareCopy');
+    var icon = document.getElementById('copyIcon');
+    var lbl  = document.getElementById('copyLabel');
+    var link = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(setCopied).catch(function() { fallbackCopy(link); setCopied(); });
+    } else { fallbackCopy(link); setCopied(); }
+    function fallbackCopy(t) {
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    function setCopied() {
+      btn.classList.add('copied');
+      icon.className = 'fa-solid fa-circle-check';
+      lbl.textContent = lang==='ar' ? 'تم النسخ!' : lang==='fr' ? 'Copié !' : 'Copied!';
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        icon.className = 'fa-solid fa-link';
+        lbl.textContent = lang==='ar' ? 'نسخ الرابط' : lang==='fr' ? 'Copier le lien' : 'Copy Link';
+      }, 2500);
+    }
   };
 
   /* ── SETTINGS ── */
@@ -824,13 +1451,75 @@
   var mockImg       = document.getElementById('mockImg');
   var previewSize   = document.getElementById('previewSize');
   var previewInfo   = document.getElementById('previewInfo');
+  var MAX_IMAGES    = 15;   // الحد الأقصى لعدد الصور في تحويل واحد
   var imageQueue    = [];
+  var previewIdx    = 0;    // index of currently previewed image
   var PREVIEW_W     = 196; // px width of the preview panel inner
+
+  /* ── PREVIEW NAVIGATION ── */
+  window.navigatePreview = function(dir) {
+    previewIdx = Math.max(0, Math.min(imageQueue.length - 1, previewIdx + dir));
+    updatePreview();
+  };
+
+  /* ── LIMIT BAR ── */
+  function updateLimitBar() {
+    var n      = imageQueue.length;
+    var pct    = Math.min(100, Math.round((n / MAX_IMAGES) * 100));
+    var isFull = (n >= MAX_IMAGES);
+    var isWarn = (n >= MAX_IMAGES - 3 && !isFull); // تحذير عند 12+
+
+    var bar   = document.getElementById('limitBar');
+    var fill  = document.getElementById('limitFill');
+    var label = document.getElementById('limitLabel');
+    var addBtn = document.getElementById('addMoreBtn');
+
+    if (!bar) return;
+
+    // تحديث الشريط
+    fill.style.width = pct + '%';
+    fill.className   = 'limit-fill' + (isFull ? ' full' : isWarn ? ' warn' : '');
+    bar.className    = 'queue-limit-bar' + (isFull ? ' full' : isWarn ? ' warn' : '');
+
+    // تحديث العداد
+    label.textContent = n + ' / ' + MAX_IMAGES;
+    label.className   = 'limit-label' + (isFull ? ' full' : isWarn ? ' warn' : '');
+
+    // تعطيل زر الإضافة عند الوصول للحد
+    if (addBtn) {
+      addBtn.disabled = isFull;
+      if (isFull) {
+        addBtn.dataset.ar = '🚫 وصلت للحد الأقصى (' + MAX_IMAGES + ' صور)';
+        addBtn.dataset.en = '🚫 Limit reached (' + MAX_IMAGES + ' images)';
+        addBtn.dataset.fr = '🚫 Limite atteinte (' + MAX_IMAGES + ' images)';
+        addBtn.innerHTML  = addBtn.dataset[lang] || addBtn.dataset['en'];
+      } else {
+        addBtn.dataset.ar = '+ إضافة المزيد';
+        addBtn.dataset.en = '+ Add more';
+        addBtn.dataset.fr = '+ Ajouter plus';
+        addBtn.innerHTML  = addBtn.dataset[lang] || addBtn.dataset['en'];
+      }
+    }
+  }
 
   /* ── LIVE PREVIEW ── */
   function updatePreview() {
     if (!imageQueue.length) return;
-    var item = imageQueue[0];
+    // clamp index
+    if (previewIdx >= imageQueue.length) previewIdx = imageQueue.length - 1;
+    var item = imageQueue[previewIdx];
+
+    // update navigation controls
+    var navEl = document.getElementById('previewNav');
+    if (imageQueue.length > 1) {
+      navEl.style.display = 'flex';
+      document.getElementById('previewCounter').textContent = (previewIdx + 1) + ' / ' + imageQueue.length;
+      document.getElementById('prevPreviewBtn').disabled = (previewIdx === 0);
+      document.getElementById('nextPreviewBtn').disabled = (previewIdx === imageQueue.length - 1);
+    } else {
+      navEl.style.display = 'none';
+      previewIdx = 0;
+    }
 
     // determine page aspect
     var isA4      = (pageSize === 'a4');
@@ -873,14 +1562,16 @@
 
     // badge text
     var sizeLabel = isA4
-      ? (landscape ? 'A4 — أفقي' : 'A4 — رأسي')
-      : (lang === 'ar' ? 'أصلي' : 'Original');
+      ? (landscape
+          ? (lang==='ar' ? 'A4 — أفقي' : lang==='fr' ? 'A4 — Paysage' : 'A4 — Landscape')
+          : (lang==='ar' ? 'A4 — رأسي' : lang==='fr' ? 'A4 — Portrait' : 'A4 — Portrait'))
+      : (lang === 'ar' ? 'أصلي' : lang === 'fr' ? 'Original' : 'Original');
     previewSize.textContent = sizeLabel;
     var marginLabel = M === 0
-      ? (lang==='ar' ? 'بدون هامش' : 'No margin')
+      ? (lang==='ar' ? 'بدون هامش' : lang==='fr' ? 'Sans marge' : 'No margin')
       : M === 30
-        ? (lang==='ar' ? 'هامش متوسط' : 'Medium margin')
-        : (lang==='ar' ? 'هامش كبير' : 'Large margin');
+        ? (lang==='ar' ? 'هامش متوسط' : lang==='fr' ? 'Marge moyenne' : 'Medium margin')
+        : (lang==='ar' ? 'هامش كبير' : lang==='fr' ? 'Grande marge' : 'Large margin');
     var rotLabel = imgRotate > 0 ? ' · ' + imgRotate + '°' : '';
     previewInfo.textContent = marginLabel + rotLabel;
   }
@@ -900,18 +1591,66 @@
     });
   }
 
+  /* ── DRAG-TO-REORDER STATE ── */
+  var dragSrcIdx = null;
+
+  function bindDragEvents(div, idx) {
+    div.setAttribute('draggable', 'true');
+
+    div.addEventListener('dragstart', function(e) {
+      dragSrcIdx = idx;
+      setTimeout(function() { div.classList.add('dragging'); }, 0);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    div.addEventListener('dragend', function() {
+      div.classList.remove('dragging');
+      document.querySelectorAll('.queue-item').forEach(function(el) {
+        el.classList.remove('drag-over');
+      });
+    });
+
+    div.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      div.classList.add('drag-over');
+    });
+
+    div.addEventListener('dragleave', function() {
+      div.classList.remove('drag-over');
+    });
+
+    div.addEventListener('drop', function(e) {
+      e.preventDefault();
+      div.classList.remove('drag-over');
+      if (dragSrcIdx === null || dragSrcIdx === idx) return;
+      // reorder imageQueue
+      var moved = imageQueue.splice(dragSrcIdx, 1)[0];
+      imageQueue.splice(idx, 0, moved);
+      dragSrcIdx = null;
+      // keep preview index pointing to same image
+      if (previewIdx >= imageQueue.length) previewIdx = imageQueue.length - 1;
+      renderQueue();
+      showToast('success', lang==='ar' ? '↕ تم إعادة الترتيب' : lang==='fr' ? '↕ Ordre modifié' : '↕ Order updated');
+    });
+  }
+
   function renderQueue() {
     queueList.innerHTML = '';
     imageQueue.forEach(function(item, idx) {
       var div = document.createElement('div');
       div.className = 'queue-item';
+      var showBadge = imageQueue.length > 1;
       div.innerHTML =
+        (showBadge ? '<span class="queue-drag-handle"><i class="fa-solid fa-grip-vertical"></i></span>' : '') +
+        (showBadge ? '<div class="queue-order-badge">'+(idx+1)+'</div>' : '') +
         '<img class="queue-thumb" src="'+item.dataUrl+'" alt="">' +
         '<div class="queue-info">' +
           '<div class="queue-name">'+item.name+'</div>' +
           '<div class="queue-size">'+item.size+'</div>' +
         '</div>' +
         '<button class="queue-remove" onclick="removeItem('+idx+')"><i class="fa-solid fa-xmark"></i></button>';
+      if (showBadge) bindDragEvents(div, idx);
       queueList.appendChild(div);
     });
     if (imageQueue.length > 0) {
@@ -932,8 +1671,11 @@
       var n = imageQueue.length;
       btnText.innerHTML = lang === 'ar'
         ? 'تحويل ' + (n > 1 ? n + ' صور' : 'صورة') + ' إلى PDF'
+        : lang === 'fr'
+        ? 'Convertir ' + n + ' image' + (n > 1 ? 's' : '') + ' en PDF'
         : 'Convert ' + n + ' image' + (n > 1 ? 's' : '') + ' to PDF';
       updatePreview();
+      updateLimitBar();
     } else {
       resetAll();
     }
@@ -941,12 +1683,14 @@
 
   window.removeItem = function(idx) {
     imageQueue.splice(idx, 1);
+    if (previewIdx >= imageQueue.length) previewIdx = Math.max(0, imageQueue.length - 1);
     renderQueue();
-    showToast('warning', lang === 'ar' ? 'تم حذف الصورة' : 'Image removed');
+    showToast('warning', lang === 'ar' ? 'تم حذف الصورة' : lang === 'fr' ? 'Image supprimée' : 'Image removed');
   };
 
   window.resetAll = function() {
     imageQueue = [];
+    previewIdx = 0;
     dropZone.style.display     = 'block';
     workspace.style.display    = 'none';
     document.getElementById('card').classList.remove('wide');
@@ -956,7 +1700,7 @@
     convertBtn.classList.remove('success');
     fileInput.value            = '';
     btnIcon.className          = 'fa-solid fa-wand-magic-sparkles';
-    btnText.innerHTML          = lang === 'ar' ? 'تحويل وتحميل PDF' : 'Convert & Download PDF';
+    btnText.innerHTML          = lang === 'ar' ? 'تحويل وتحميل PDF' : lang === 'fr' ? 'Convertir et télécharger PDF' : 'Convert & Download PDF';
     pageSize='original'; pageOrient='portrait'; imgRotate=0; imgMargin=0; mergeMode='merge';
     document.querySelectorAll('#pageSizeCtrl .seg-btn').forEach(function(b,i){ b.classList.toggle('active',i===0); });
     document.querySelectorAll('#orientCtrl .seg-btn').forEach(function(b,i) { b.classList.toggle('active',i===0); });
@@ -971,9 +1715,26 @@
   function addFiles(files) {
     var valid = Array.from(files).filter(function(f) { return f.type.startsWith('image/'); });
     if (!valid.length) {
-      showToast('error', lang === 'ar' ? 'يرجى اختيار ملفات صور فقط' : 'Please select image files only');
+      showToast('error', lang === 'ar' ? 'يرجى اختيار ملفات صور فقط' : lang === 'fr' ? 'Veuillez sélectionner uniquement des images' : 'Please select image files only');
       return;
     }
+
+    // ── تحقق من الحد الأقصى ──
+    var remaining = MAX_IMAGES - imageQueue.length;
+    if (remaining <= 0) {
+      showToast('error',
+        lang === 'ar' ? '🚫 وصلت للحد الأقصى — ' + MAX_IMAGES + ' صور كحد أقصى لكل تحويل' :
+        lang === 'fr' ? '🚫 Limite atteinte — ' + MAX_IMAGES + ' images maximum par conversion' :
+        '🚫 Limit reached — max ' + MAX_IMAGES + ' images per conversion');
+      return;
+    }
+    // إذا اختار أكثر من المتبقي — نأخذ المتبقي فقط
+    var trimmed = false;
+    if (valid.length > remaining) {
+      valid = valid.slice(0, remaining);
+      trimmed = true;
+    }
+
     var loaded = 0;
     valid.forEach(function(file) {
       var reader = new FileReader();
@@ -981,9 +1742,17 @@
         imageQueue.push({ name:file.name, size:formatSize(file.size), dataUrl:e.target.result });
         loaded++;
         if (loaded === valid.length) {
+          previewIdx = imageQueue.length - 1;
           renderQueue();
           setStep(2);
-          showToast('success', lang==='ar' ? 'تم إضافة '+valid.length+' صورة ✓' : valid.length+' image(s) added ✓');
+          if (trimmed) {
+            showToast('warning',
+              lang==='ar' ? '⚠️ تم إضافة '+valid.length+' صورة فقط — الحد الأقصى '+MAX_IMAGES+' صورة' :
+              lang==='fr' ? '⚠️ Seulement '+valid.length+' image(s) ajoutée(s) — limite de '+MAX_IMAGES :
+              '⚠️ Only '+valid.length+' image(s) added — max limit is '+MAX_IMAGES);
+          } else {
+            showToast('success', lang==='ar' ? 'تم إضافة '+valid.length+' صورة ✓' : lang==='fr' ? valid.length+' image(s) ajoutée(s) ✓' : valid.length+' image(s) added ✓');
+          }
         }
       };
       reader.readAsDataURL(file);
@@ -991,7 +1760,11 @@
   }
 
   /* ── EVENTS ── */
-  fileInput.addEventListener('change', function(e) { addFiles(e.target.files); });
+  fileInput.addEventListener('change', function(e) {
+    addFiles(e.target.files);
+    // إصلاح Bug 3: تفريغ الحقل بعد الإضافة لإتاحة إعادة اختيار نفس الصورة
+    fileInput.value = '';
+  });
 
   ['dragover','dragenter'].forEach(function(evt) {
     dropZone.addEventListener(evt, function(e) { e.preventDefault(); dropZone.classList.add('over'); });
@@ -1007,7 +1780,7 @@
     var items = e.clipboardData && e.clipboardData.items;
     if (!items) return;
     var files = Array.from(items).filter(function(i){ return i.type.startsWith('image/'); }).map(function(i){ return i.getAsFile(); }).filter(Boolean);
-    if (files.length) { addFiles(files); showToast('success', lang==='ar' ? '📋 تم لصق الصورة!' : '📋 Image pasted!'); }
+    if (files.length) { addFiles(files); showToast('success', lang==='ar' ? '📋 تم لصق الصورة!' : lang==='fr' ? '📋 Image collée !' : '📋 Image pasted!'); }
   });
 
   /* ── CONVERT ── */
@@ -1024,14 +1797,17 @@
     });
   }
 
+  // ── دالة sleep: تعطي المتصفح وقتاً لإعادة رسم الـ UI (إصلاح UI Freeze) ──
+  function sleep(ms) { return new Promise(function(r){ setTimeout(r, ms); }); }
+
   convertBtn.addEventListener('click', async function() {
     if (!imageQueue.length) {
-      showToast('warning', lang==='ar' ? 'يرجى إضافة صورة أولاً!' : 'Please add an image first!');
+      showToast('warning', lang==='ar' ? 'يرجى إضافة صورة أولاً!' : lang==='fr' ? 'Veuillez ajouter une image d\'abord !' : 'Please add an image first!');
       return;
     }
     convertBtn.disabled = true;
     btnIcon.className   = 'fa-solid fa-spinner fa-spin';
-    btnText.innerHTML   = lang==='ar' ? 'جاري التحويل…' : 'Converting…';
+    btnText.innerHTML   = lang==='ar' ? 'جاري التحويل…' : lang==='fr' ? 'Conversion en cours…' : 'Converting…';
     progressWrap.style.display = 'block';
     progressBar.style.width    = '5%';
 
@@ -1062,7 +1838,11 @@
         var pageW, pageH, pdfW, pdfH;
         if (pageSize === 'original') {
           pageW = imgW; pageH = imgH;
-          pdfW  = imgW; pdfH  = imgH; // PDF in px, same as image
+          // ── إصلاح Giant PDF Bug: PDF يُقاس بالنقاط (Points) لا البكسل
+          // المعيار: الشاشات 96dpi → نقاط PDF 72dpi → معامل التحويل = 72/96 = 0.75
+          // صورة 4000px → 4000 × 0.75 = 3000pt ≈ 10.4 بوصة (طبيعي جداً)
+          pdfW  = Math.round(imgW * 0.75);
+          pdfH  = Math.round(imgH * 0.75);
         } else {
           var dims = PAGE_SIZES[pageSize][pageOrient];
           pageW = dims.canvasW; pageH = dims.canvasH; // high-res canvas
@@ -1093,10 +1873,24 @@
         }
         ctx.drawImage(srcCanvas, dx, dy, dw, dh);
 
-        var pngUrl = out.toDataURL('image/png');
-        var res    = await fetch(pngUrl);
-        var bytes  = await res.arrayBuffer();
-        return { bytes:bytes, pageW:pdfW, pageH:pdfH };
+        // ── إصلاح Bug 2 + Bug 1: اختيار ذكي للصيغة بدل إجبار PNG ──
+        // نحدد الصيغة بناءً على نوع الصورة الأصلية لتفادي تضخم الملف
+        var srcName   = (item.name || '').toLowerCase();
+        var isJpeg    = /\.(jpe?g)$/.test(srcName) || item.dataUrl.startsWith('data:image/jpeg');
+        var mimeType  = isJpeg ? 'image/jpeg' : 'image/png';
+        var quality   = isJpeg ? 0.95 : undefined; // جودة عالية 95% للـ JPEG
+
+        // تحويل الـ canvas إلى Blob مباشرة (ObjectURL بدل Base64 لتوفير الذاكرة RAM)
+        var bytes = await new Promise(function(resolveBytes) {
+          out.toBlob(function(blob) {
+            var reader = new FileReader();
+            reader.onload = function(ev) { resolveBytes(ev.target.result); };
+            reader.readAsArrayBuffer(blob);
+          }, mimeType, quality);
+        });
+
+        // اختر الدالة المناسبة في pdf-lib بناءً على الصيغة
+        return { bytes: bytes, pageW: pdfW, pageH: pdfH, isJpeg: isJpeg };
       }
 
       // ── helper: download blob ──
@@ -1115,10 +1909,14 @@
         var pdfDoc = await PDFDocument.create();
         for (var i = 0; i < total; i++) {
           var processed = await processImage(imageQueue[i]);
-          var pdfImg = await pdfDoc.embedPng(processed.bytes);
+          // إصلاح Bug 1: استخدام embedJpg أو embedPng حسب الصيغة الأصلية
+          var pdfImg = processed.isJpeg
+            ? await pdfDoc.embedJpg(processed.bytes)
+            : await pdfDoc.embedPng(processed.bytes);
           var page   = pdfDoc.addPage([processed.pageW, processed.pageH]);
           page.drawImage(pdfImg, { x:0, y:0, width:processed.pageW, height:processed.pageH });
           progressBar.style.width = Math.round(((i+1)/total)*90) + '%';
+          await sleep(10); // ← إعطاء المتصفح فرصة لرسم شريط التقدم
         }
         var pdfBytes = await pdfDoc.save();
         downloadBlob(pdfBytes, 'PDF_Forge.pdf');
@@ -1128,7 +1926,10 @@
         for (var j = 0; j < total; j++) {
           var singleDoc = await PDFDocument.create();
           var proc      = await processImage(imageQueue[j]);
-          var singleImg = await singleDoc.embedPng(proc.bytes);
+          // إصلاح Bug 1: استخدام embedJpg أو embedPng حسب الصيغة الأصلية
+          var singleImg = proc.isJpeg
+            ? await singleDoc.embedJpg(proc.bytes)
+            : await singleDoc.embedPng(proc.bytes);
           var singlePg  = singleDoc.addPage([proc.pageW, proc.pageH]);
           singlePg.drawImage(singleImg, { x:0, y:0, width:proc.pageW, height:proc.pageH });
           var singleBytes = await singleDoc.save();
@@ -1137,6 +1938,7 @@
           var baseName = imageQueue[j].name.replace(/\.[^.]+$/, '');
           downloadBlob(singleBytes, 'PDF_Forge_' + (j+1) + '_' + baseName + '.pdf');
           progressBar.style.width = Math.round(((j+1)/total)*90) + '%';
+          await sleep(10); // ← إعطاء المتصفح فرصة لرسم شريط التقدم
         }
       }
 
@@ -1146,23 +1948,257 @@
       convertBtn.classList.add('success');
       btnIcon.className   = 'fa-solid fa-circle-check';
       var doneMsg = (mergeMode === 'separate' && total > 1)
-        ? (lang==='ar' ? 'تم تحميل '+total+' ملفات PDF! 🎉' : total+' PDF files downloaded! 🎉')
-        : (lang==='ar' ? 'تم التحميل! 🎉' : 'Downloaded! 🎉');
+        ? (lang==='ar' ? 'تم تحميل '+total+' ملفات PDF! 🎉' : lang==='fr' ? total+' fichiers PDF téléchargés ! 🎉' : total+' PDF files downloaded! 🎉')
+        : (lang==='ar' ? 'تم التحميل! 🎉' : lang==='fr' ? 'Téléchargé ! 🎉' : 'Downloaded! 🎉');
       btnText.innerHTML = doneMsg;
       setStep(3);
       showToast('success', lang==='ar'
         ? '🎉 تم تحويل '+total+' صورة بجودة كاملة!'
+        : lang==='fr'
+        ? '🎉 '+total+' image(s) convertie(s) avec succès !'
         : '🎉 '+total+' image(s) converted successfully!');
 
     } catch(err) {
       console.error(err);
       convertBtn.disabled = false;
       btnIcon.className   = 'fa-solid fa-wand-magic-sparkles';
-      btnText.innerHTML   = lang==='ar' ? 'تحويل وتحميل PDF' : 'Convert & Download PDF';
+      btnText.innerHTML   = lang==='ar' ? 'تحويل وتحميل PDF' : lang==='fr' ? 'Convertir et télécharger PDF' : 'Convert & Download PDF';
       progressWrap.style.display = 'none';
-      showToast('error', lang==='ar' ? 'حدث خطأ، حاول مجدداً' : 'An error occurred, please retry');
+      showToast('error', lang==='ar' ? 'حدث خطأ، حاول مجدداً' : lang==='fr' ? 'Une erreur s\'est produite, réessayez' : 'An error occurred, please retry');
     }
   });
+
+})();
+</script>
+<!-- ══ PWA — Service Worker + Install Logic ══════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  var deferredPrompt = null;
+
+  // ══════════════════════════════════════════════════════════════════
+  //  1. تسجيل Service Worker
+  // ══════════════════════════════════════════════════════════════════
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(function(reg) {
+          console.log('[PWA] Service Worker مسجَّل ✅');
+          setInterval(function() { reg.update(); }, 60000);
+          reg.addEventListener('updatefound', function() {
+            var w = reg.installing;
+            w.addEventListener('statechange', function() {
+              if (w.state === 'installed' && navigator.serviceWorker.controller) {
+                var lang = window._initLang || 'ar';
+                if (typeof showToast === 'function')
+                  showToast('warning',
+                    lang==='ar' ? '🔄 تحديث جديد — أعِد تحميل الصفحة' :
+                    lang==='fr' ? '🔄 Mise à jour disponible — rechargez' :
+                                  '🔄 Update available — reload the page');
+              }
+            });
+          });
+        })
+        .catch(function(e){ console.warn('[PWA] SW فشل:', e); });
+    });
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  2. التقاط حدث التثبيت (Chrome/Edge/Android)
+  // ══════════════════════════════════════════════════════════════════
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log('[PWA] beforeinstallprompt ✅ — الزر جاهز');
+    // البانر يظهر بالفعل — فقط حدّث نص الزر ليُشير للتثبيت الفوري
+    var btn = document.querySelector('.pwa-install-btn');
+    if (btn) btn.style.background = '#059669'; // أخضر = تثبيت فوري متاح
+  });
+
+  // ══════════════════════════════════════════════════════════════════
+  //  3. بعد التثبيت
+  // ══════════════════════════════════════════════════════════════════
+  window.addEventListener('appinstalled', function() {
+    deferredPrompt = null;
+    hideBanner();
+    var navBtn = document.getElementById('pwaNavBtn');
+    if (navBtn) navBtn.style.display = 'none';
+    if (typeof showToast === 'function') {
+      var lang = window._initLang || 'ar';
+      showToast('success',
+        lang==='ar' ? '🎉 تم تثبيت PDF Forge على جهازك!' :
+        lang==='fr' ? '🎉 PDF Forge installé sur votre appareil !' :
+                      '🎉 PDF Forge installed on your device!');
+    }
+  });
+
+  // ══════════════════════════════════════════════════════════════════
+  //  4. مراقبة الاتصال
+  // ══════════════════════════════════════════════════════════════════
+  function updateOnline() {
+    var bar = document.getElementById('offline-bar');
+    var msg = document.getElementById('offlineMsg');
+    if (!bar) return;
+    var lang = window._initLang || 'ar';
+    if (!navigator.onLine) {
+      msg.textContent =
+        lang==='ar' ? 'أنت غير متصل — التطبيق يعمل بدون إنترنت ✅' :
+        lang==='fr' ? 'Hors ligne — fonctionne sans internet ✅' :
+                      'Offline — app works without internet ✅';
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
+    }
+  }
+  window.addEventListener('online',  updateOnline);
+  window.addEventListener('offline', updateOnline);
+  updateOnline();
+
+  // ══════════════════════════════════════════════════════════════════
+  //  5. إظهار البانر دائماً (ما لم يُغلقه المستخدم أو التطبيق مثبَّت)
+  // ══════════════════════════════════════════════════════════════════
+  window.addEventListener('DOMContentLoaded', function() {
+    // لا تُظهره لو التطبيق مثبَّت بالفعل (standalone mode)
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone === true;
+    if (isStandalone) {
+      var navBtn = document.getElementById('pwaNavBtn');
+      if (navBtn) navBtn.style.display = 'none';
+      return;
+    }
+
+    // لا تُظهره لو رفضه المستخدم في هذه الجلسة
+    if (sessionStorage.getItem('pwa_banner_dismissed')) return;
+
+    // أظهر البانر بعد 2 ثانية
+    setTimeout(function() {
+      var banner = document.getElementById('pwa-banner');
+      if (banner) {
+        banner.classList.add('show');
+        // تطبيق الترجمة على البانر
+        if (typeof setLang === 'function') setLang(window._initLang || 'ar');
+      }
+    }, 2000);
+  });
+
+  function hideBanner() {
+    var banner = document.getElementById('pwa-banner');
+    if (banner) banner.classList.remove('show');
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  6. دالة التثبيت الرئيسية
+  // ══════════════════════════════════════════════════════════════════
+  window.pwaInstall = function() {
+    var lang = window._initLang || 'ar';
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone === true;
+
+    // مثبَّت بالفعل
+    if (isStandalone) {
+      if (typeof showToast === 'function')
+        showToast('success',
+          lang==='ar' ? '✅ التطبيق مثبَّت بالفعل على جهازك!' :
+          lang==='fr' ? '✅ Application déjà installée !' :
+                        '✅ App is already installed!');
+      return;
+    }
+
+    // Chrome/Edge/Android — التثبيت الفوري
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(r) {
+        if (r.outcome === 'dismissed') {
+          sessionStorage.setItem('pwa_banner_dismissed', '1');
+        }
+        deferredPrompt = null;
+      });
+      return;
+    }
+
+    // iOS Safari — تعليمات يدوية
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS) {
+      showIOSModal(lang);
+      return;
+    }
+
+    // متصفح لا يدعم التثبيت (Firefox Desktop مثلاً)
+    showManualInstallModal(lang);
+  };
+
+  window.pwaDismiss = function() {
+    sessionStorage.setItem('pwa_banner_dismissed', '1');
+    hideBanner();
+  };
+
+  // ══════════════════════════════════════════════════════════════════
+  //  7. مودال iOS
+  // ══════════════════════════════════════════════════════════════════
+  function showIOSModal(lang) {
+    var existing = document.getElementById('pwa-modal');
+    if (existing) { existing.style.display = 'flex'; return; }
+
+    var modal = document.createElement('div');
+    modal.id = 'pwa-modal';
+    modal.style.cssText = [
+      'position:fixed;inset:0;background:rgba(0,0,0,.65);',
+      'z-index:99999;display:flex;align-items:flex-end;',
+      'justify-content:center;padding:20px;',
+      'animation:fadeIn .25s ease'
+    ].join('');
+
+    var txt =
+      lang==='ar' ?
+        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 تثبيت PDF Forge على iPhone</h3>' +
+        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
+        '① اضغط على زر <strong style="color:#fff">مشاركة</strong> <span style="font-size:18px">⬆️</span> في شريط Safari<br>' +
+        '② مرّر للأسفل واختر <strong style="color:#fff">"إضافة إلى الشاشة الرئيسية"</strong> 📲<br>' +
+        '③ اضغط <strong style="color:#fff">"إضافة"</strong> — وستجد أيقونة PDF Forge على شاشتك!' +
+        '</p>' :
+      lang==='fr' ?
+        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 Installer PDF Forge sur iPhone</h3>' +
+        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
+        '① Appuyez sur le bouton <strong style="color:#fff">Partager</strong> <span style="font-size:18px">⬆️</span> dans Safari<br>' +
+        '② Faites défiler et choisissez <strong style="color:#fff">"Sur l\'écran d\'accueil"</strong> 📲<br>' +
+        '③ Appuyez sur <strong style="color:#fff">"Ajouter"</strong> — l\'icône apparaîtra sur votre écran !' +
+        '</p>' :
+        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 Install PDF Forge on iPhone</h3>' +
+        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
+        '① Tap the <strong style="color:#fff">Share</strong> button <span style="font-size:18px">⬆️</span> in Safari<br>' +
+        '② Scroll down and tap <strong style="color:#fff">"Add to Home Screen"</strong> 📲<br>' +
+        '③ Tap <strong style="color:#fff">"Add"</strong> — the PDF Forge icon will appear on your screen!' +
+        '</p>';
+
+    var closeTxt = lang==='ar' ? 'فهمت، شكراً' : lang==='fr' ? 'Compris, merci' : 'Got it, thanks';
+
+    modal.innerHTML =
+      '<div style="background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:20px;padding:28px 24px;max-width:420px;width:100%;border:1px solid rgba(37,99,235,.3)">' +
+      txt +
+      '<button onclick="document.getElementById(\'pwa-modal\').style.display=\'none\'" ' +
+      'style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:13px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">' +
+      closeTxt + '</button></div>';
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    document.body.appendChild(modal);
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  8. مودال متصفحات لا تدعم التثبيت
+  // ══════════════════════════════════════════════════════════════════
+  function showManualInstallModal(lang) {
+    var msg =
+      lang==='ar' ?
+        '💡 افتح الموقع في Chrome أو Edge على Android أو الكمبيوتر لتظهر خيار التثبيت تلقائياً.' :
+      lang==='fr' ?
+        '💡 Ouvrez ce site dans Chrome ou Edge sur Android ou PC pour voir l\'option d\'installation.' :
+        '💡 Open this site in Chrome or Edge on Android or desktop to see the install option automatically.';
+    if (typeof showToast === 'function') showToast('warning', msg);
+  }
 
 })();
 </script>
