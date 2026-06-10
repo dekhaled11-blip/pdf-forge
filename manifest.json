@@ -1,6 +1,6 @@
 {
-  "name": "PDF Forge",
-  "short_name": "PDF Forge",
+  "name": "Tera PDF",
+  "short_name": "Tera PDF",
   "description": "حوّل صورك إلى PDF فوراً داخل متصفحك — مجاناً، خاص، بدون رفع ملفات",
   "start_url": "/",
   "scope": "/",
@@ -62,14 +62,14 @@
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "PDF Forge — تحويل الصور إلى PDF"
+      "label": "Tera PDF — تحويل الصور إلى PDF"
     },
     {
       "src": "screenshot-desktop.png",
       "sizes": "1280x800",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "PDF Forge Desktop"
+      "label": "Tera PDF Desktop"
     }
   ],
   "shortcuts": [

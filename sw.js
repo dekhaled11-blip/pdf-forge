@@ -1,11 +1,11 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════╗
- * ║              PDF Forge — Service Worker v1.0                    ║
+ * ║              Tera PDF — Service Worker v1.0                    ║
  * ║   يتيح: التشغيل offline، التثبيت كتطبيق، التخزين المؤقت       ║
  * ╚══════════════════════════════════════════════════════════════════╝
  */
 
-const CACHE_NAME    = 'pdfforge-v1';
+const CACHE_NAME    = 'terapdf-v1';
 const OFFLINE_URL   = '/';
 
 // ── الملفات الأساسية التي تُحمَّل في أول تثبيت (App Shell) ──────────
@@ -35,7 +35,7 @@ const CDN_HOSTS = [
 //  INSTALL — تثبيت App Shell في الكاش
 // ════════════════════════════════════════════════════════════════════
 self.addEventListener('install', event => {
-  console.log('[SW] تثبيت PDF Forge Service Worker...');
+  console.log('[SW] تثبيت Tera PDF Service Worker...');
 
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
@@ -64,7 +64,7 @@ self.addEventListener('install', event => {
 //  ACTIVATE — تنظيف الكاش القديم عند التحديث
 // ════════════════════════════════════════════════════════════════════
 self.addEventListener('activate', event => {
-  console.log('[SW] تفعيل PDF Forge Service Worker...');
+  console.log('[SW] تفعيل Tera PDF Service Worker...');
 
   event.waitUntil(
     caches.keys().then(keys =>
@@ -205,7 +205,7 @@ function offlineFallback() {
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>PDF Forge — غير متصل</title>
+  <title>Tera PDF — غير متصل</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Cairo',sans-serif;background:#0f172a;color:#e2e8f0;
@@ -223,7 +223,7 @@ function offlineFallback() {
 <body>
   <div class="icon">📡</div>
   <h1>لا يوجد اتصال بالإنترنت</h1>
-  <p>لا بأس — PDF Forge يعمل بشكل كامل بدون إنترنت بمجرد تحميل الصفحة مرة واحدة.<br>يرجى الاتصال والمحاولة مجدداً.</p>
+  <p>لا بأس — Tera PDF يعمل بشكل كامل بدون إنترنت بمجرد تحميل الصفحة مرة واحدة.<br>يرجى الاتصال والمحاولة مجدداً.</p>
   <button onclick="location.reload()">🔄 إعادة المحاولة</button>
 </body>
 </html>`,
@@ -238,7 +238,7 @@ function offlineFallback() {
 self.addEventListener('push', event => {
   const data = event.data?.json() ?? {};
   event.waitUntil(
-    self.registration.showNotification(data.title || 'PDF Forge', {
+    self.registration.showNotification(data.title || 'Tera PDF', {
       body:    data.body    || 'لديك إشعار جديد',
       icon:    '/icon-192.png',
       badge:   '/favicon-32.png',
@@ -255,4 +255,4 @@ self.addEventListener('notificationclick', event => {
   );
 });
 
-console.log('[SW] PDF Forge Service Worker محمَّل ✅');
+console.log('[SW] Tera PDF Service Worker محمَّل ✅');
