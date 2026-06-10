@@ -22,23 +22,23 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="msapplication-TileColor" content="#2563eb" />
   <meta name="msapplication-TileImage" content="icon-192.png" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#0f172a" />
 
   <!-- ═══ SEO — MULTILINGUAL ════════════════════════════════ -->
   <!-- Default (English) — used by bots that don't run JS -->
   <title id="meta-title">Free Image to PDF Converter | No Upload | PDF Forge</title>
-  <meta id="meta-desc"     name="description"   content="Convert any PNG or JPG image to PDF for free in seconds — works directly in your browser with no file upload to the internet." />
+  <meta id="meta-desc"     name="description"   content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
   <meta id="meta-keywords" name="keywords"       content="convert image to pdf, jpg to pdf, png to pdf, free pdf converter, image pdf online" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph (Facebook · Messenger · Instagram · Reddit · GitHub previews) -->
   <meta property="og:type"        content="website" />
   <meta id="og-title"       property="og:title"       content="Free Image to PDF Converter — PDF Forge" />
-  <meta id="og-description" property="og:description" content="Free tool that converts your images to PDF in seconds, runs 100% on your device — no uploads, no sign-up." />
+  <meta id="og-description" property="og:description" content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
   <meta id="og-url"         property="og:url"         content="" />
   <meta property="og:site_name"   content="PDF Forge" />
   <meta property="og:locale"      content="en_US" />
-  <meta property="og:locale:alternate" content="ar_SA" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
   <!-- Preview image for social sharing -->
   <meta property="og:image"        content="pdf.jpg" />
@@ -49,7 +49,7 @@
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta id="tw-title"       name="twitter:title"       content="Free Image to PDF Converter — PDF Forge" />
-  <meta id="tw-description" name="twitter:description" content="Convert PNG/JPG to PDF instantly in your browser — free, private, no upload." />
+  <meta id="tw-description" name="twitter:description" content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
   <meta name="twitter:image"       content="pdf.jpg" />
   <meta name="twitter:site"        content="@PDFForge" />
 
@@ -140,11 +140,13 @@
     document.getElementById('meta-title').textContent   = m.pageTitle;
     document.getElementById('meta-desc').setAttribute('content', m.description);
     document.getElementById('meta-keywords').setAttribute('content', m.keywords);
-    setMeta('og-title',       m.title);
-    setMeta('og-description', m.description);
-    setMeta('og-url',         url); // ✅ og:url يُقرأ بـ JS من Facebook/Twitter — هذا صحيح
-    setMeta('tw-title',       m.title);
-    setMeta('tw-description', m.description);
+    // og/twitter دائماً بالإنجليزية لأن منصات المشاركة لا تنفذ JS
+    var enMeta = socialMeta['en'];
+    setMeta('og-title',       enMeta.title);
+    setMeta('og-description', enMeta.description);
+    setMeta('og-url',         url);
+    setMeta('tw-title',       enMeta.title);
+    setMeta('tw-description', enMeta.description);
     document.querySelector('meta[property="og:locale"]').setAttribute('content', m.ogLocale);
 
     // ── CANONICAL: لا نلمسه بـ JS — الرابط الأساسي ثابت في HTML مباشرة
@@ -276,17 +278,64 @@
       transition: color .2s, background .2s;
     }
     .pwa-dismiss-btn:hover { color: #fff; background: rgba(255,255,255,.08); }
+    /* ── شارة الأوفلاين — زاوية علوية ثابتة ── */
     #offline-bar {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: #dc2626; color: #fff;
-      text-align: center; font-size: 13px; font-weight: 700;
-      padding: 8px 16px;
+      position: fixed;
+      top: 56px;
+      inset-inline-end: 14px;
+      background: #1e293b;
+      border: 1px solid rgba(248,113,113,.35);
+      border-radius: 20px;
+      padding: 6px 12px 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
       z-index: 10000;
-      transform: translateY(-100%);
-      transition: transform .3s ease;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
     }
-    #offline-bar.show { transform: translateY(0); }
+    #offline-bar.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #offline-bar .offline-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #f87171;
+      flex-shrink: 0;
+      box-shadow: 0 0 5px #f87171;
+      animation: pulse-dot 1.4s infinite;
+    }
+    #offline-bar #offlineMsg {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fca5a5;
+      white-space: nowrap;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.3; transform:scale(.6); }
+    }
+
+    /* ── سطر "يعمل بدون إنترنت" في الهيرو ── */
+    .offline-hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(96,165,250,.1);
+      border: 1px solid rgba(96,165,250,.25);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-top: 10px;
+    }
+    .offline-hero-note i { font-size: 12px; }
 
     /* LANG BAR */
     .lang-bar { background:var(--ink); display:flex; align-items:center; justify-content:space-between; padding:0 24px; height:46px; position:sticky; top:0; z-index:100; }
@@ -365,7 +414,19 @@
     html.dark .lang-drop-item { color:var(--ink2); }
     html.dark .lang-drop-item:hover { background:#0f172a; }
     html.dark .lang-drop-item.active { background:#1e3a5f; color:#93c5fd; }
-    .lang-drop-flag { font-size:16px; line-height:1; }
+    .lang-drop-flag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px; height: 18px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.75);
+      flex-shrink: 0;
+    }
 
     /* HEADER */
     .header { background:var(--white); border-bottom:1px solid var(--line); padding:28px 32px 24px; text-align:center; }
@@ -460,8 +521,8 @@
 
     /* STEPS */
     .steps { display:flex; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
-    .step { flex:1; padding:10px 8px; text-align:center; font-size:12px; font-weight:600; color:var(--muted); background:var(--surf); border-left:1px solid var(--line); transition:all .3s; display:flex; align-items:center; justify-content:center; gap:6px; }
-    html[dir="rtl"] .step { border-left:none; border-right:1px solid var(--line); }
+    .step { flex:1; padding:10px 8px; text-align:center; font-size:12px; font-weight:600; color:var(--muted); background:var(--surf); border-inline-start:1px solid var(--line); transition:all .3s; display:flex; align-items:center; justify-content:center; gap:6px; }
+    /* border-inline-start handles both RTL and LTR automatically */
     .step:first-child { border:none; }
     .step.active { background:var(--accent); color:#fff; }
     .step.done   { background:#ecfdf5; color:var(--green); }
@@ -782,7 +843,7 @@
 
     /* LTR */
     html[dir="ltr"] body { font-family:var(--font-en); }
-    html[dir="ltr"] .step { border-right:1px solid var(--line); border-left:none; }
+    /* border-inline-start handles both RTL and LTR automatically */
     html[dir="ltr"] .step:first-child { border:none; }
 
     @media(max-width:480px){
@@ -795,8 +856,8 @@
 
 <!-- ══ OFFLINE INDICATOR BAR ══════════════════════════════════════ -->
 <div id="offline-bar">
-  <i class="fa-solid fa-wifi-slash"></i>
-  <span id="offlineMsg">أنت غير متصل — التطبيق يعمل بدون إنترنت ✅</span>
+  <span class="offline-dot"></span>
+  <span id="offlineMsg">غير متصل</span>
 </div>
 
 <!-- ══ PWA INSTALL BANNER ══════════════════════════════════════════ -->
@@ -835,15 +896,15 @@
       </button>
       <div class="lang-drop-menu" id="langDropMenu">
         <button class="lang-drop-item active" data-lang="ar" onclick="selectLang('ar')">
-          <span class="lang-drop-flag">🇸🇦</span>
+          <span class="lang-drop-flag">SA</span>
           <span>عربي</span>
         </button>
         <button class="lang-drop-item" data-lang="en" onclick="selectLang('en')">
-          <span class="lang-drop-flag">🇬🇧</span>
+          <span class="lang-drop-flag">EN</span>
           <span>English</span>
         </button>
         <button class="lang-drop-item" data-lang="fr" onclick="selectLang('fr')">
-          <span class="lang-drop-flag">🇫🇷</span>
+          <span class="lang-drop-flag">FR</span>
           <span>Français</span>
         </button>
       </div>
@@ -853,7 +914,7 @@
     <span>PDF Forge</span>
     <i class="fa-solid fa-bolt-lightning"></i>
     <button id="pwaNavBtn" onclick="pwaInstall()" title="تثبيت التطبيق"
-      style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:7px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px;transition:all .2s;margin-inline-start:6px;">
+      style="display:none;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);border-radius:7px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;gap:5px;align-items:center;transition:all .2s;margin-inline-start:6px;">
       <i class="fa-solid fa-download" style="font-size:10px"></i>
       <span class="t" data-ar="تثبيت" data-en="Install" data-fr="Installer" style="margin-inline-start:4px">تثبيت</span>
     </button>
@@ -874,6 +935,10 @@
     data-ar="ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة."
     data-en="Upload your image and we'll instantly convert it to a high-quality PDF — free, no cloud upload."
     data-fr="Téléversez votre image et nous la convertirons instantanément en PDF haute qualité — gratuitement, sans envoi vers le cloud.">ارفع صورتك وسنحوّلها فوراً إلى مستند PDF عالي الجودة — مجاناً وبدون رفع للسحابة.</p>
+  <div class="offline-hero-note">
+    <i class="fa-solid fa-wifi"></i>
+    <span class="t" data-ar="يعمل بالكامل بدون إنترنت" data-en="Works fully offline" data-fr="Fonctionne hors ligne">يعمل بالكامل بدون إنترنت</span>
+  </div>
 </div>
 
 <!-- MAIN -->
@@ -1235,10 +1300,10 @@
     <div class="footer-divider"></div>
     <div class="copyright">
       <span class="t"
-        data-ar="جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري"
-        data-en="All Rights Reserved &copy; 2025 — <strong>PDF Forge</strong> | Free for personal and commercial use"
-        data-fr="Tous droits réservés &copy; 2025 — <strong>PDF Forge</strong> | Gratuit pour un usage personnel et commercial">
-        جميع الحقوق محفوظة &copy; 2025 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري
+        data-ar="جميع الحقوق محفوظة &copy; 2026 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري"
+        data-en="All Rights Reserved &copy; 2026 — <strong>PDF Forge</strong> | Free for personal and commercial use"
+        data-fr="Tous droits réservés &copy; 2026 — <strong>PDF Forge</strong> | Gratuit pour un usage personnel et commercial">
+        جميع الحقوق محفوظة &copy; 2026 — <strong>PDF Forge</strong> | أداة مجانية للاستخدام الشخصي والتجاري
       </span><br>
       <span class="t"
         data-ar="تعمل بالكامل في المتصفح — لا يتم رفع أي بيانات إلى الخوادم"
@@ -1975,230 +2040,175 @@
 (function() {
   'use strict';
 
-  var deferredPrompt = null;
+  var deferredPrompt  = null;
+  var bannerDismissed = false;
 
-  // ══════════════════════════════════════════════════════════════════
-  //  1. تسجيل Service Worker
-  // ══════════════════════════════════════════════════════════════════
+  // ── 1. تسجيل Service Worker ─────────────────────────────────────
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('/sw.js', { scope: '/' })
         .then(function(reg) {
-          console.log('[PWA] Service Worker مسجَّل ✅');
+          console.log('[PWA] Service Worker مسجَّل ✅ scope:', reg.scope);
+
+          // تحقق من التحديثات كل 60 ثانية
           setInterval(function() { reg.update(); }, 60000);
+
+          // إشعار بوجود تحديث متاح
           reg.addEventListener('updatefound', function() {
-            var w = reg.installing;
-            w.addEventListener('statechange', function() {
-              if (w.state === 'installed' && navigator.serviceWorker.controller) {
-                var lang = window._initLang || 'ar';
-                if (typeof showToast === 'function')
-                  showToast('warning',
-                    lang==='ar' ? '🔄 تحديث جديد — أعِد تحميل الصفحة' :
-                    lang==='fr' ? '🔄 Mise à jour disponible — rechargez' :
-                                  '🔄 Update available — reload the page');
+            var newWorker = reg.installing;
+            newWorker.addEventListener('statechange', function() {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                showUpdateToast();
               }
             });
           });
         })
-        .catch(function(e){ console.warn('[PWA] SW فشل:', e); });
+        .catch(function(err) {
+          console.warn('[PWA] فشل تسجيل Service Worker:', err);
+        });
     });
   }
 
-  // ══════════════════════════════════════════════════════════════════
-  //  2. التقاط حدث التثبيت (Chrome/Edge/Android)
-  // ══════════════════════════════════════════════════════════════════
+  // ── 2. استقبال حدث beforeinstallprompt ─────────────────────────
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
     deferredPrompt = e;
-    console.log('[PWA] beforeinstallprompt ✅ — الزر جاهز');
-    // البانر يظهر بالفعل — فقط حدّث نص الزر ليُشير للتثبيت الفوري
-    var btn = document.querySelector('.pwa-install-btn');
-    if (btn) btn.style.background = '#059669'; // أخضر = تثبيت فوري متاح
+    console.log('[PWA] جاهز للتثبيت ✅');
+
+    // لا تُظهر البانر لو سبق رفضه في هذا الجلسة
+    // البانر معطّل — التثبيت متاح فقط من زر شريط التنقل
+    // if (!sessionStorage.getItem('pwa_banner_dismissed')) {
+    //   setTimeout(showInstallBanner, 2500);
+    // }
+
+    // أظهر زر التثبيت في شريط التنقل
+    var navBtn = document.getElementById('pwaNavBtn');
+    if (navBtn) navBtn.style.display = 'inline-flex';
   });
 
-  // ══════════════════════════════════════════════════════════════════
-  //  3. بعد التثبيت
-  // ══════════════════════════════════════════════════════════════════
+  // ── 3. تتبّع نجاح التثبيت ───────────────────────────────────────
   window.addEventListener('appinstalled', function() {
+    console.log('[PWA] تم التثبيت بنجاح 🎉');
     deferredPrompt = null;
     hideBanner();
+
     var navBtn = document.getElementById('pwaNavBtn');
     if (navBtn) navBtn.style.display = 'none';
+
+    // أظهر رسالة نجاح عبر Toast الموجود في الموقع
     if (typeof showToast === 'function') {
       var lang = window._initLang || 'ar';
       showToast('success',
-        lang==='ar' ? '🎉 تم تثبيت PDF Forge على جهازك!' :
-        lang==='fr' ? '🎉 PDF Forge installé sur votre appareil !' :
-                      '🎉 PDF Forge installed on your device!');
+        lang === 'ar' ? '🎉 تم تثبيت PDF Forge على جهازك!' :
+        lang === 'fr' ? '🎉 PDF Forge installé sur votre appareil !' :
+                        '🎉 PDF Forge installed on your device!');
     }
   });
 
-  // ══════════════════════════════════════════════════════════════════
-  //  4. مراقبة الاتصال
-  // ══════════════════════════════════════════════════════════════════
-  function updateOnline() {
+  // ── 4. مراقبة حالة الاتصال ─────────────────────────────────────
+  function updateOnlineStatus() {
     var bar = document.getElementById('offline-bar');
     var msg = document.getElementById('offlineMsg');
     if (!bar) return;
     var lang = window._initLang || 'ar';
     if (!navigator.onLine) {
       msg.textContent =
-        lang==='ar' ? 'أنت غير متصل — التطبيق يعمل بدون إنترنت ✅' :
-        lang==='fr' ? 'Hors ligne — fonctionne sans internet ✅' :
-                      'Offline — app works without internet ✅';
+        lang === 'fr' ? 'Hors ligne' :
+        lang === 'en' ? 'Offline'    :
+                        'غير متصل';
       bar.classList.add('show');
     } else {
       bar.classList.remove('show');
     }
   }
-  window.addEventListener('online',  updateOnline);
-  window.addEventListener('offline', updateOnline);
-  updateOnline();
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  updateOnlineStatus(); // تحقق فوري عند التحميل
 
-  // ══════════════════════════════════════════════════════════════════
-  //  5. إظهار البانر دائماً (ما لم يُغلقه المستخدم أو التطبيق مثبَّت)
-  // ══════════════════════════════════════════════════════════════════
-  window.addEventListener('DOMContentLoaded', function() {
-    // لا تُظهره لو التطبيق مثبَّت بالفعل (standalone mode)
-    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-                    || window.navigator.standalone === true;
-    if (isStandalone) {
-      var navBtn = document.getElementById('pwaNavBtn');
-      if (navBtn) navBtn.style.display = 'none';
-      return;
+  // ── 5. دوال البانر (معرَّضة للـ HTML) ──────────────────────────
+  function showInstallBanner() {
+    var banner = document.getElementById('pwa-banner');
+    if (banner && !bannerDismissed) {
+      banner.classList.add('show');
+      translateBanner();
     }
-
-    // لا تُظهره لو رفضه المستخدم في هذه الجلسة
-    if (sessionStorage.getItem('pwa_banner_dismissed')) return;
-
-    // أظهر البانر بعد 2 ثانية
-    setTimeout(function() {
-      var banner = document.getElementById('pwa-banner');
-      if (banner) {
-        banner.classList.add('show');
-        // تطبيق الترجمة على البانر
-        if (typeof setLang === 'function') setLang(window._initLang || 'ar');
-      }
-    }, 2000);
-  });
+  }
 
   function hideBanner() {
     var banner = document.getElementById('pwa-banner');
     if (banner) banner.classList.remove('show');
   }
 
-  // ══════════════════════════════════════════════════════════════════
-  //  6. دالة التثبيت الرئيسية
-  // ══════════════════════════════════════════════════════════════════
+  function translateBanner() {
+    // إعادة تطبيق الترجمة على عناصر البانر (لأنه يُضاف قبل تشغيل setLang)
+    if (typeof setLang === 'function') {
+      setLang(window._initLang || 'ar');
+    }
+  }
+
   window.pwaInstall = function() {
-    var lang = window._initLang || 'ar';
-    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-                    || window.navigator.standalone === true;
-
-    // مثبَّت بالفعل
-    if (isStandalone) {
-      if (typeof showToast === 'function')
-        showToast('success',
-          lang==='ar' ? '✅ التطبيق مثبَّت بالفعل على جهازك!' :
-          lang==='fr' ? '✅ Application déjà installée !' :
-                        '✅ App is already installed!');
-      return;
-    }
-
-    // Chrome/Edge/Android — التثبيت الفوري
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function(r) {
-        if (r.outcome === 'dismissed') {
-          sessionStorage.setItem('pwa_banner_dismissed', '1');
+    if (!deferredPrompt) {
+      // إذا المستخدم على iOS — أظهر تعليمات يدوية
+      var isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+      if (isIOS) { showIOSInstructions(); return; }
+      // إذا مثبَّت بالفعل
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        if (typeof showToast === 'function') {
+          var lang = window._initLang || 'ar';
+          showToast('success',
+            lang === 'ar' ? '✅ التطبيق مثبَّت بالفعل!' :
+            lang === 'fr' ? '✅ Application déjà installée !' :
+                            '✅ App is already installed!');
         }
-        deferredPrompt = null;
-      });
+      }
       return;
     }
 
-    // iOS Safari — تعليمات يدوية
-    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if (isIOS) {
-      showIOSModal(lang);
-      return;
-    }
-
-    // متصفح لا يدعم التثبيت (Firefox Desktop مثلاً)
-    showManualInstallModal(lang);
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(result) {
+      console.log('[PWA] اختيار المستخدم:', result.outcome);
+      if (result.outcome === 'accepted') {
+        console.log('[PWA] قبِل المستخدم التثبيت');
+      } else {
+        console.log('[PWA] رفض المستخدم التثبيت');
+        sessionStorage.setItem('pwa_banner_dismissed', '1');
+      }
+      deferredPrompt = null;
+    });
   };
 
   window.pwaDismiss = function() {
+    bannerDismissed = true;
     sessionStorage.setItem('pwa_banner_dismissed', '1');
     hideBanner();
   };
 
-  // ══════════════════════════════════════════════════════════════════
-  //  7. مودال iOS
-  // ══════════════════════════════════════════════════════════════════
-  function showIOSModal(lang) {
-    var existing = document.getElementById('pwa-modal');
-    if (existing) { existing.style.display = 'flex'; return; }
-
-    var modal = document.createElement('div');
-    modal.id = 'pwa-modal';
-    modal.style.cssText = [
-      'position:fixed;inset:0;background:rgba(0,0,0,.65);',
-      'z-index:99999;display:flex;align-items:flex-end;',
-      'justify-content:center;padding:20px;',
-      'animation:fadeIn .25s ease'
-    ].join('');
-
-    var txt =
-      lang==='ar' ?
-        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 تثبيت PDF Forge على iPhone</h3>' +
-        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
-        '① اضغط على زر <strong style="color:#fff">مشاركة</strong> <span style="font-size:18px">⬆️</span> في شريط Safari<br>' +
-        '② مرّر للأسفل واختر <strong style="color:#fff">"إضافة إلى الشاشة الرئيسية"</strong> 📲<br>' +
-        '③ اضغط <strong style="color:#fff">"إضافة"</strong> — وستجد أيقونة PDF Forge على شاشتك!' +
-        '</p>' :
-      lang==='fr' ?
-        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 Installer PDF Forge sur iPhone</h3>' +
-        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
-        '① Appuyez sur le bouton <strong style="color:#fff">Partager</strong> <span style="font-size:18px">⬆️</span> dans Safari<br>' +
-        '② Faites défiler et choisissez <strong style="color:#fff">"Sur l\'écran d\'accueil"</strong> 📲<br>' +
-        '③ Appuyez sur <strong style="color:#fff">"Ajouter"</strong> — l\'icône apparaîtra sur votre écran !' +
-        '</p>' :
-        '<h3 style="font-size:17px;font-weight:900;color:#fff;margin-bottom:10px">📱 Install PDF Forge on iPhone</h3>' +
-        '<p style="font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:16px">' +
-        '① Tap the <strong style="color:#fff">Share</strong> button <span style="font-size:18px">⬆️</span> in Safari<br>' +
-        '② Scroll down and tap <strong style="color:#fff">"Add to Home Screen"</strong> 📲<br>' +
-        '③ Tap <strong style="color:#fff">"Add"</strong> — the PDF Forge icon will appear on your screen!' +
-        '</p>';
-
-    var closeTxt = lang==='ar' ? 'فهمت، شكراً' : lang==='fr' ? 'Compris, merci' : 'Got it, thanks';
-
-    modal.innerHTML =
-      '<div style="background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:20px;padding:28px 24px;max-width:420px;width:100%;border:1px solid rgba(37,99,235,.3)">' +
-      txt +
-      '<button onclick="document.getElementById(\'pwa-modal\').style.display=\'none\'" ' +
-      'style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:13px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">' +
-      closeTxt + '</button></div>';
-
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-
-    document.body.appendChild(modal);
-  }
-
-  // ══════════════════════════════════════════════════════════════════
-  //  8. مودال متصفحات لا تدعم التثبيت
-  // ══════════════════════════════════════════════════════════════════
-  function showManualInstallModal(lang) {
+  function showIOSInstructions() {
+    var lang = window._initLang || 'ar';
     var msg =
-      lang==='ar' ?
-        '💡 افتح الموقع في Chrome أو Edge على Android أو الكمبيوتر لتظهر خيار التثبيت تلقائياً.' :
-      lang==='fr' ?
-        '💡 Ouvrez ce site dans Chrome ou Edge sur Android ou PC pour voir l\'option d\'installation.' :
-        '💡 Open this site in Chrome or Edge on Android or desktop to see the install option automatically.';
+      lang === 'ar' ? '📱 على iOS: اضغط مشاركة ثم "إضافة إلى الشاشة الرئيسية"' :
+      lang === 'fr' ? '📱 Sur iOS: appuyez sur Partager puis "Sur l\'écran d\'accueil"' :
+                      '📱 On iOS: tap Share then "Add to Home Screen"';
     if (typeof showToast === 'function') showToast('warning', msg);
   }
+
+  // ── 6. إشعار التحديث ────────────────────────────────────────────
+  function showUpdateToast() {
+    var lang = window._initLang || 'ar';
+    var msg =
+      lang === 'ar' ? '🔄 تحديث جديد متاح — أعِد تحميل الصفحة' :
+      lang === 'fr' ? '🔄 Mise à jour disponible — rechargez la page' :
+                      '🔄 New update available — reload the page';
+    if (typeof showToast === 'function') showToast('warning', msg);
+  }
+
+  // ── 7. تحديث شريط الحالة حسب وضع العرض ─────────────────────────
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      console.log('[PWA] يعمل كتطبيق مستقل (standalone) 📱');
+      // يمكن إخفاء عناصر الـ browser UI هنا إذا لزم
+    }
+  });
 
 })();
 </script>
