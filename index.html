@@ -23,13 +23,28 @@
   <meta name="msapplication-TileColor" content="#2563eb" />
   <meta name="msapplication-TileImage" content="icon-192.png" />
   <meta name="theme-color" content="#0f172a" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; frame-src https://nowpayments.io; connect-src 'self' https://cloud.umami.is;" />
 
   <!-- ═══ SEO — MULTILINGUAL ════════════════════════════════ -->
   <!-- Default (English) — used by bots that don't run JS -->
   <title id="meta-title">Free Image to PDF Converter | No Upload | Tera PDF</title>
   <meta id="meta-desc"     name="description"   content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
-  <meta id="meta-keywords" name="keywords"       content="convert image to pdf, jpg to pdf, png to pdf, free pdf converter, image pdf online" />
-  <meta name="robots" content="index, follow" />
+  <meta id="meta-keywords" name="keywords"       content="convert image to pdf, jpg to pdf, png to pdf, free pdf converter, image to pdf online, pdf maker, photo to pdf, jpeg to pdf, webp to pdf, offline pdf converter, private pdf converter, no upload pdf, instant pdf, free pdf tool, convert pictures to pdf, bulk image to pdf" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="rating" content="general" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="language" content="English" />
+  <meta name="category" content="Technology, Utilities, PDF Tools" />
+  <meta name="classification" content="Tools/Utilities" />
+  <meta name="coverage" content="Worldwide" />
+  <meta name="distribution" content="Global" />
+  <meta name="target" content="all" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
 
   <!-- Open Graph (Facebook · Messenger · Instagram · Reddit · GitHub previews) -->
   <meta property="og:type"        content="website" />
@@ -41,7 +56,7 @@
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
   <!-- Preview image for social sharing -->
-  <meta property="og:image"        content="pdf.jpg" />
+  <meta property="og:image"        content="https://tera-pdf-online.netlify.app/pdf.jpg" />
   <meta property="og:image:width"  content="512" />
   <meta property="og:image:height" content="512" />
   <meta property="og:image:alt"    content="Tera PDF — Image to PDF Converter" />
@@ -50,7 +65,7 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta id="tw-title"       name="twitter:title"       content="Free Image to PDF Converter — Tera PDF" />
   <meta id="tw-description" name="twitter:description" content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
-  <meta name="twitter:image"       content="pdf.jpg" />
+  <meta name="twitter:image"       content="https://tera-pdf-online.netlify.app/pdf.jpg" />
   <meta name="twitter:site"        content="@TeraPDF" />
 
   <!-- Telegram & WhatsApp read og: tags — already covered above -->
@@ -72,18 +87,48 @@
   <link rel="alternate" hreflang="fr" href="https://tera-pdf-online.netlify.app/" />
   <link rel="alternate" hreflang="x-default" href="https://tera-pdf-online.netlify.app/" />
 
+  <!-- ═══ ANALYTICS — Umami (privacy-friendly, no cookies) ══════════ -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="4b2e82a1-a866-476b-9ea7-ab14b8de979d"></script>
+
   <!-- Schema.org structured data (multilingual) -->
   <script type="application/ld+json" id="schema-json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Tera PDF",
+    "alternateName": ["Tera PDF Converter", "Image to PDF Converter"],
     "url": "https://tera-pdf-online.netlify.app/",
-    "description": "Free online tool to convert images (PNG, JPG, WEBP) to PDF instantly in your browser — no file upload, 100% private.",
+    "description": "Free online tool to convert images (PNG, JPG, WEBP) to PDF instantly in your browser — no file upload, 100% private, works offline.",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web, Android, iOS",
+    "operatingSystem": "Web, Android, iOS, Windows, macOS",
+    "browserRequirements": "Requires JavaScript",
     "inLanguage": ["en", "ar", "fr"],
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    "availableLanguage": [
+      { "@type": "Language", "name": "English" },
+      { "@type": "Language", "name": "Arabic" },
+      { "@type": "Language", "name": "French" }
+    ],
+    "featureList": [
+      "Works offline (PWA)",
+      "100% private — no file upload",
+      "Free to use",
+      "Supports PNG, JPG, JPEG, WEBP",
+      "Batch conversion up to 15 images",
+      "Custom page size and margins"
+    ],
+    "screenshot": "https://tera-pdf-online.netlify.app/pdf.jpg",
+    "image": "https://tera-pdf-online.netlify.app/icon-512.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1",
+      "bestRating": "5"
+    }
   }
   </script>
 
@@ -102,14 +147,14 @@
       ar: {
         title:       'تحويل صورة إلى PDF مجاناً — Tera PDF',
         description: 'حوّل صورك PNG أو JPG إلى PDF في ثوانٍ داخل متصفحك — مجاناً وبدون رفع ملفاتك للإنترنت.',
-        keywords:    'تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, محول PDF مجاني',
+        keywords:    'تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, محول PDF مجاني, تحويل صور إلى PDF بدون إنترنت, محول صور خاص, تحويل jpeg إلى pdf, أداة PDF مجانية, تحويل صور دفعة واحدة',
         pageTitle:   'تحويل صورة إلى PDF مجاناً | بدون رفع ملفات | Tera PDF',
         ogLocale:    'ar_SA'
       },
       fr: {
         title:       'Convertisseur d\'images en PDF gratuit — Tera PDF',
         description: 'Convertissez vos images PNG/JPG en PDF en quelques secondes dans votre navigateur — gratuit, privé, sans envoi de fichiers.',
-        keywords:    'convertir image en pdf, jpg en pdf, png en pdf, convertisseur pdf gratuit',
+        keywords:    'convertir image en pdf, jpg en pdf, png en pdf, convertisseur pdf gratuit, convertir photo en pdf, outil pdf gratuit, pdf sans upload, convertisseur pdf hors ligne, jpeg en pdf, convertir plusieurs images en pdf',
         pageTitle:   'Convertisseur d\'images en PDF gratuit | Sans envoi | Tera PDF',
         ogLocale:    'fr_FR'
       }
@@ -121,13 +166,11 @@
     try {
       var saved = localStorage.getItem('terapdf_lang');
       if (saved && supported.indexOf(saved) !== -1) {
+        // المستخدم اختار لغة سابقاً — نحترم اختياره
         lang = saved;
       } else {
-        var bl = (navigator.languages || [navigator.language || 'en']);
-        for (var i = 0; i < bl.length; i++) {
-          var code = bl[i].toLowerCase().split('-')[0];
-          if (supported.indexOf(code) !== -1) { lang = code; break; }
-        }
+        // أول زيارة — الإنجليزية افتراضياً دائماً
+        lang = 'en';
       }
     } catch(e) {}
 
@@ -336,6 +379,135 @@
       margin-top: 10px;
     }
     .offline-hero-note i { font-size: 12px; }
+
+
+    /* ── زر التبرع الثابت ── */
+    #donate-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 20px;
+      z-index: 9999;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 20px rgba(245,158,11,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    #donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245,158,11,.55);
+    }
+    #donate-btn i { font-size: 14px; }
+
+    /* ── نافذة التبرع ── */
+    #donate-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    #donate-modal.open { display: flex; }
+    #donate-modal-box {
+      background: #1e293b;
+      border-radius: 18px;
+      padding: 20px;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      width: 360px;
+      max-width: 95vw;
+    }
+    #donate-modal-close {
+      position: absolute;
+      top: 12px;
+      inset-inline-end: 14px;
+      background: rgba(255,255,255,.1);
+      border: none;
+      color: #fff;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #donate-modal-close:hover { background: rgba(255,255,255,.2); }
+    #donate-modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f59e0b;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+
+    /* ── قسم التبرع ── */
+    .donate-section {
+      animation: fadeInUp .6s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .donate-section {
+      background: var(--surf);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .donate-section-inner { max-width: 480px; margin: 0 auto; }
+    .donate-coffee-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .donate-section h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .donate-section h3 span { color: #f59e0b; }
+    .donate-section p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+    .donate-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(245,158,11,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .donate-open-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(245,158,11,.5);
+    }
 
     /* LANG BAR */
     .lang-bar { background:var(--ink); display:flex; align-items:center; justify-content:space-between; padding:0 24px; height:46px; position:sticky; top:0; z-index:100; }
@@ -1140,6 +1312,30 @@
   </div>
 </div>
 
+
+<!-- ══ DONATE SECTION ══════════════════════════════════════════════ -->
+<section class="donate-section" id="donate-section" style="display:none">
+  <div class="donate-section-inner">
+    <span class="donate-coffee-icon"><i class="fa-solid fa-mug-hot"></i></span>
+    <h3 class="t"
+      data-ar="أعجبك <span>Tera PDF</span>؟ ادعمني بتبرع صغير!"
+      data-en="Did <span>Tera PDF</span> help you? Support with a small donation!"
+      data-fr="<span>Tera PDF</span> vous a aidé ? Soutenez avec un don !">
+      Did <span>Tera PDF</span> help you? Buy me a coffee!
+    </h3>
+    <p class="t"
+      data-ar="الموقع مجاني بالكامل وبدون إعلانات — إذا ساعدك، فتبرع صغير يساعدني على الاستمرار 🙏"
+      data-en="This tool is 100% free with no ads — if it helped you, a small donation keeps me going 🙏"
+      data-fr="Cet outil est gratuit sans publicités — si il vous a aidé, un petit don m'aide à continuer 🙏">
+      This tool is 100% free with no ads — if it helped you, a small coffee keeps me going 🙏
+    </p>
+    <button class="donate-open-btn" onclick="document.getElementById('donate-modal').classList.add('open')">
+      <i class="fa-solid fa-mug-hot"></i>
+      <span class="t" data-ar="تبرع" data-en="Donate" data-fr="Faire un don">Donate</span>
+    </button>
+  </div>
+</section>
+
 <!-- ARTICLES -->
 <section class="articles-section">
   <div class="articles-inner">
@@ -1357,7 +1553,7 @@
   });
 
   /* ── LANGUAGE ── */
-  var lang = 'ar';
+  var lang = 'en';
 
   window.applyLang = function(l) {
     lang = l;
@@ -1711,7 +1907,7 @@
         (showBadge ? '<div class="queue-order-badge">'+(idx+1)+'</div>' : '') +
         '<img class="queue-thumb" src="'+item.dataUrl+'" alt="">' +
         '<div class="queue-info">' +
-          '<div class="queue-name">'+item.name+'</div>' +
+          '<div class="queue-name">'+item.name.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>' +
           '<div class="queue-size">'+item.size+'</div>' +
         '</div>' +
         '<button class="queue-remove" onclick="removeItem('+idx+')"><i class="fa-solid fa-xmark"></i></button>';
@@ -2023,6 +2219,15 @@
         ? '🎉 '+total+' image(s) convertie(s) avec succès !'
         : '🎉 '+total+' image(s) converted successfully!');
 
+      // إظهار قسم التبرع بعد أول تحويل ناجح
+      var donateSection = document.getElementById('donate-section');
+      if (donateSection && donateSection.style.display === 'none') {
+        setTimeout(function() {
+          donateSection.style.display = '';
+          donateSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1500);
+      }
+
     } catch(err) {
       console.error(err);
       convertBtn.disabled = false;
@@ -2097,7 +2302,7 @@
 
     // أظهر رسالة نجاح عبر Toast الموجود في الموقع
     if (typeof showToast === 'function') {
-      var lang = window._initLang || 'ar';
+      var lang = window._initLang || 'en';
       showToast('success',
         lang === 'ar' ? '🎉 تم تثبيت Tera PDF على جهازك!' :
         lang === 'fr' ? '🎉 Tera PDF installé sur votre appareil !' :
@@ -2110,7 +2315,7 @@
     var bar = document.getElementById('offline-bar');
     var msg = document.getElementById('offlineMsg');
     if (!bar) return;
-    var lang = window._initLang || 'ar';
+    var lang = window._initLang || 'en';
     if (!navigator.onLine) {
       msg.textContent =
         lang === 'fr' ? 'Hors ligne' :
@@ -2142,7 +2347,7 @@
   function translateBanner() {
     // إعادة تطبيق الترجمة على عناصر البانر (لأنه يُضاف قبل تشغيل setLang)
     if (typeof setLang === 'function') {
-      setLang(window._initLang || 'ar');
+      setLang(window._initLang || 'en');
     }
   }
 
@@ -2154,7 +2359,7 @@
       // إذا مثبَّت بالفعل
       if (window.matchMedia('(display-mode: standalone)').matches) {
         if (typeof showToast === 'function') {
-          var lang = window._initLang || 'ar';
+          var lang = window._initLang || 'en';
           showToast('success',
             lang === 'ar' ? '✅ التطبيق مثبَّت بالفعل!' :
             lang === 'fr' ? '✅ Application déjà installée !' :
@@ -2184,7 +2389,7 @@
   };
 
   function showIOSInstructions() {
-    var lang = window._initLang || 'ar';
+    var lang = window._initLang || 'en';
     var msg =
       lang === 'ar' ? '📱 على iOS: اضغط مشاركة ثم "إضافة إلى الشاشة الرئيسية"' :
       lang === 'fr' ? '📱 Sur iOS: appuyez sur Partager puis "Sur l\'écran d\'accueil"' :
@@ -2194,7 +2399,7 @@
 
   // ── 6. إشعار التحديث ────────────────────────────────────────────
   function showUpdateToast() {
-    var lang = window._initLang || 'ar';
+    var lang = window._initLang || 'en';
     var msg =
       lang === 'ar' ? '🔄 تحديث جديد متاح — أعِد تحميل الصفحة' :
       lang === 'fr' ? '🔄 Mise à jour disponible — rechargez la page' :
@@ -2212,5 +2417,37 @@
 
 })();
 </script>
+
+<!-- ══ DONATE BUTTON ══════════════════════════════════════════════ -->
+<button id="donate-btn" style="display:none" onclick="document.getElementById('donate-modal').classList.add('open')">
+  <i class="fa-solid fa-heart"></i>
+  <span class="t" data-ar="تبرع" data-en="Donate" data-fr="Donner">Donate</span>
+</button>
+
+<!-- ══ DONATE MODAL ════════════════════════════════════════════════ -->
+<div id="donate-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div id="donate-modal-box">
+    <button id="donate-modal-close" onclick="document.getElementById('donate-modal').classList.remove('open')">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <p style="font-size:11px; color:#94a3b8; text-align:center; margin-bottom:10px; background:rgba(96,165,250,.08); border:1px solid rgba(96,165,250,.2); border-radius:8px; padding:6px 10px;">
+      <i class="fa-solid fa-coins" style="color:#f59e0b; margin-inline-end:5px;"></i>
+      <span class="t"
+        data-ar="أقبل التبرعات بالعملات الرقمية فقط"
+        data-en="I accept donations in cryptocurrency only"
+        data-fr="J'accepte les dons en cryptomonnaie uniquement">I accept donations in cryptocurrency only</span>
+    </p>
+    <div id="donate-modal-title">
+      <i class="fa-solid fa-mug-hot"></i>
+      <span class="t" data-ar="ادعم Tera PDF ☕" data-en="Support Tera PDF" data-fr="Soutenir Tera PDF">Support Tera PDF</span>
+    </div>
+    <iframe src="https://nowpayments.io/embeds/donation-widget?api_key=668ea52f-eec4-47c0-b386-5a4cd9d82402"
+      width="100%" height="540" frameborder="0" scrolling="no"
+      style="overflow-y:hidden; border-radius:10px; display:block;">
+      Can't load widget
+    </iframe>
+  </div>
+</div>
+
 </body>
 </html>
