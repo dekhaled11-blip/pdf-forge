@@ -1,13 +1,13 @@
 {
-  "name": "PDF Forge — محوّل الصور إلى PDF",
-  "short_name": "PDF Forge",
+  "name": "Tera PDF",
+  "short_name": "Tera PDF",
   "description": "حوّل صورك إلى PDF فوراً داخل متصفحك — مجاناً، خاص، بدون رفع ملفات",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "lang": "ar",
   "dir": "rtl",
   "categories": ["utilities", "productivity"],
@@ -62,13 +62,20 @@
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "PDF Forge — تحويل الصور إلى PDF"
+      "label": "Tera PDF — تحويل الصور إلى PDF"
+    },
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Tera PDF Desktop"
     }
   ],
   "shortcuts": [
     {
-      "name": "تحويل صورة الآن",
-      "short_name": "تحويل",
+      "name": "Convert Now",
+      "short_name": "Convert",
       "description": "ابدأ تحويل صورة مباشرة",
       "url": "/?action=convert",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]

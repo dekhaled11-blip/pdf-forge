@@ -216,10 +216,6 @@
   })();
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
   <style>
@@ -2162,22 +2158,11 @@
       function downloadBlob(bytes, filename) {
         var blob = new Blob([bytes], { type:'application/pdf' });
         var url  = URL.createObjectURL(blob);
-
-        // ── iPhone/iPad Safari لا يدعم a.download ──
-        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        if (isIOS) {
-          window.open(url, '_blank');
-          setTimeout(function() { URL.revokeObjectURL(url); }, 10000);
-          return;
-        }
-
-        // ── بقية المتصفحات ──
-        var a = document.createElement('a');
+        var a    = document.createElement('a');
         a.href = url; a.download = filename;
         document.body.appendChild(a); a.click();
         document.body.removeChild(a);
-        setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+        URL.revokeObjectURL(url);
       }
 
       if (mergeMode === 'merge' || total === 1) {
@@ -2289,37 +2274,7 @@
     });
   }
 
-  // ── 2. استقبال صورة مشاركة من تطبيقات أخرى (Share Target) ────────
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.addEventListener('message', function(event) {
-      if (!event.data || event.data.type !== 'SHARE_TARGET_IMAGE') return;
-      var file = event.data.file;
-      if (!file) return;
-
-      // تحقق أن الملف صورة
-      if (!file.type.startsWith('image/')) {
-        var lang = window._initLang || 'en';
-        showToast('error',
-          lang === 'ar' ? '❌ الملف المشارَك ليس صورة!' :
-          lang === 'fr' ? '❌ Le fichier partagé n\'est pas une image !' :
-                          '❌ Shared file is not an image!');
-        return;
-      }
-
-      // أضف الصورة للقائمة مباشرة
-      addFiles([file]);
-
-      var lang = window._initLang || 'en';
-      showToast('success',
-        lang === 'ar' ? '📤 تم استلام الصورة المشاركة!' :
-        lang === 'fr' ? '📤 Image partagée reçue !' :
-                        '📤 Shared image received!');
-
-      console.log('[PWA] Share Target: تم استلام صورة مشاركة ✅', file.name);
-    });
-  }
-
-  // ── 3. استقبال حدث beforeinstallprompt (Install Prompt) ────────
+  // ── 2. استقبال حدث beforeinstallprompt ─────────────────────────
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
     deferredPrompt = e;
