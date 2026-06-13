@@ -1,15 +1,15 @@
 {
   "name": "Tera PDF",
   "short_name": "Tera PDF",
-  "description": "حوّل صورك إلى PDF فوراً داخل متصفحك — مجاناً، خاص، بدون رفع ملفات",
+  "description": "Convert your images to PDF instantly in your browser — free, private, no file uploads",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
-  "lang": "ar",
-  "dir": "rtl",
+  "lang": "en",
+  "dir": "ltr",
   "categories": ["utilities", "productivity"],
   "prefer_related_applications": false,
   "icons": [
