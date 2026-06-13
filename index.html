@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <!-- ═══ EARLY THEME INIT — يمنع وميض الوضع الفاتح عند التحميل ═══ -->
-  <script>
-    (function() {
-      var saved = localStorage.getItem('theme');
-      if (saved !== 'light') {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -39,8 +30,8 @@
 
   <!-- ═══ SEO — MULTILINGUAL ════════════════════════════════ -->
   <!-- Default (English) — used by bots that don't run JS -->
-  <title id="meta-title">Free Image to PDF Converter | No Upload | Tera PDF</title>
-  <meta id="meta-desc"     name="description"   content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
+  <title id="meta-title">Free Image to PDF Converter | Works Offline | Tera PDF</title>
+  <meta id="meta-desc"     name="description"   content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser and fully offline once loaded." />
   <meta id="meta-keywords" name="keywords"       content="convert image to pdf, jpg to pdf, png to pdf, free pdf converter, image to pdf online, pdf maker, photo to pdf, jpeg to pdf, webp to pdf, offline pdf converter, private pdf converter, no upload pdf, instant pdf, free pdf tool, convert pictures to pdf, bulk image to pdf" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
@@ -58,14 +49,14 @@
   <!-- Open Graph (Facebook · Messenger · Instagram · Reddit · GitHub previews) -->
   <meta property="og:type"        content="website" />
   <meta id="og-title"       property="og:title"       content="Free Image to PDF Converter — Tera PDF" />
-  <meta id="og-description" property="og:description" content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
+  <meta id="og-description" property="og:description" content="Convert images to PDF for free — no upload, 100% private, works instantly and fully offline in your browser." />
   <meta id="og-url"         property="og:url"         content="" />
   <meta property="og:site_name"   content="Tera PDF" />
   <meta property="og:locale"      content="en_US" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
   <!-- Preview image for social sharing -->
-  <meta property="og:image"        content="https://tera-pdf-online.netlify.app/pdf.jpg" />
+  <meta property="og:image"        content="https://terapdf.onlinepdf.workers.dev/pdf.jpg" />
   <meta property="og:image:width"  content="512" />
   <meta property="og:image:height" content="512" />
   <meta property="og:image:alt"    content="Tera PDF — Image to PDF Converter" />
@@ -73,8 +64,8 @@
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta id="tw-title"       name="twitter:title"       content="Free Image to PDF Converter — Tera PDF" />
-  <meta id="tw-description" name="twitter:description" content="Convert images to PDF for free — no upload, 100% private, works instantly in your browser." />
-  <meta name="twitter:image"       content="https://tera-pdf-online.netlify.app/pdf.jpg" />
+  <meta id="tw-description" name="twitter:description" content="Convert images to PDF for free — no upload, 100% private, works instantly and fully offline in your browser." />
+  <meta name="twitter:image"       content="https://terapdf.onlinepdf.workers.dev/pdf.jpg" />
   <meta name="twitter:site"        content="@TeraPDF" />
 
   <!-- Telegram & WhatsApp read og: tags — already covered above -->
@@ -82,19 +73,19 @@
   <!-- ═══ CANONICAL URL ════════════════════════════════════
        ✅ الصواب: يجب أن يكون الرابط الأساسي للموقع هنا مباشرة في HTML
           بدون تغييره بـ JavaScript — محركات البحث تفضل القراءة من HTML
-          مثال: href="https://tera-pdf-online.netlify.app/"
+          مثال: href="https://terapdf.onlinepdf.workers.dev/"
        ❌ الخطأ: تغييره بـ JS يربك خوارزميات الأرشفة ويسبب التردد
   ════════════════════════════════════════════════════════ -->
-  <link rel="canonical" href="https://tera-pdf-online.netlify.app/" />
+  <link rel="canonical" href="https://terapdf.onlinepdf.workers.dev/" />
 
   <!-- ═══ HREFLANG — بديل احترافي لمتعدد اللغات بدل تغيير canonical ════
        هذا هو الحل الصحيح لـ SEO متعدد اللغات: كل لغة بـ hreflang خاصة
        وجميعهم يشتركون في نفس canonical الأساسي
   ═══════════════════════════════════════════════════════════════════ -->
-  <link rel="alternate" hreflang="ar" href="https://tera-pdf-online.netlify.app/" />
-  <link rel="alternate" hreflang="en" href="https://tera-pdf-online.netlify.app/" />
-  <link rel="alternate" hreflang="fr" href="https://tera-pdf-online.netlify.app/" />
-  <link rel="alternate" hreflang="x-default" href="https://tera-pdf-online.netlify.app/" />
+  <link rel="alternate" hreflang="ar" href="https://terapdf.onlinepdf.workers.dev/" />
+  <link rel="alternate" hreflang="en" href="https://terapdf.onlinepdf.workers.dev/" />
+  <link rel="alternate" hreflang="fr" href="https://terapdf.onlinepdf.workers.dev/" />
+  <link rel="alternate" hreflang="x-default" href="https://terapdf.onlinepdf.workers.dev/" />
 
   <!-- ═══ ANALYTICS — Umami (privacy-friendly, no cookies) ══════════ -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="4b2e82a1-a866-476b-9ea7-ab14b8de979d"></script>
@@ -106,7 +97,7 @@
     "@type": "WebApplication",
     "name": "Tera PDF",
     "alternateName": ["Tera PDF Converter", "Image to PDF Converter"],
-    "url": "https://tera-pdf-online.netlify.app/",
+    "url": "https://terapdf.onlinepdf.workers.dev/",
     "description": "Free online tool to convert images (PNG, JPG, WEBP) to PDF instantly in your browser — no file upload, 100% private, works offline.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web, Android, iOS, Windows, macOS",
@@ -125,8 +116,8 @@
       "Batch conversion up to 15 images",
       "Custom page size and margins"
     ],
-    "screenshot": "https://tera-pdf-online.netlify.app/pdf.jpg",
-    "image": "https://tera-pdf-online.netlify.app/icon-512.png",
+    "screenshot": "https://terapdf.onlinepdf.workers.dev/pdf.jpg",
+    "image": "https://terapdf.onlinepdf.workers.dev/icon-512.png",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -148,23 +139,23 @@
     var socialMeta = {
       en: {
         title:       'Free Image to PDF Converter — Tera PDF',
-        description: 'Convert PNG/JPG to PDF instantly in your browser — free, private, no upload required.',
-        keywords:    'convert image to pdf, jpg to pdf, png to pdf, free pdf converter',
-        pageTitle:   'Free Image to PDF Converter | No Upload | Tera PDF',
+        description: 'Convert PNG/JPG to PDF instantly — free, private, no upload, works fully offline.',
+        keywords:    'convert image to pdf, jpg to pdf, png to pdf, free pdf converter, offline pdf converter',
+        pageTitle:   'Free Image to PDF Converter | Works Offline | Tera PDF',
         ogLocale:    'en_US'
       },
       ar: {
         title:       'تحويل صورة إلى PDF مجاناً — Tera PDF',
-        description: 'حوّل صورك PNG أو JPG إلى PDF في ثوانٍ داخل متصفحك — مجاناً وبدون رفع ملفاتك للإنترنت.',
+        description: 'حوّل صورك PNG أو JPG إلى PDF في ثوانٍ — مجاناً، خاص، بدون رفع ملفات، ويعمل بالكامل بدون إنترنت.',
         keywords:    'تحويل صورة إلى PDF, تحويل jpg إلى pdf, تحويل png إلى pdf, محول PDF مجاني, تحويل صور إلى PDF بدون إنترنت, محول صور خاص, تحويل jpeg إلى pdf, أداة PDF مجانية, تحويل صور دفعة واحدة',
-        pageTitle:   'تحويل صورة إلى PDF مجاناً | بدون رفع ملفات | Tera PDF',
+        pageTitle:   'تحويل صورة إلى PDF مجاناً | يعمل بدون إنترنت | Tera PDF',
         ogLocale:    'ar_SA'
       },
       fr: {
         title:       'Convertisseur d\'images en PDF gratuit — Tera PDF',
-        description: 'Convertissez vos images PNG/JPG en PDF en quelques secondes dans votre navigateur — gratuit, privé, sans envoi de fichiers.',
+        description: 'Convertissez vos images PNG/JPG en PDF en quelques secondes — gratuit, privé, sans envoi de fichiers, et fonctionne hors ligne.',
         keywords:    'convertir image en pdf, jpg en pdf, png en pdf, convertisseur pdf gratuit, convertir photo en pdf, outil pdf gratuit, pdf sans upload, convertisseur pdf hors ligne, jpeg en pdf, convertir plusieurs images en pdf',
-        pageTitle:   'Convertisseur d\'images en PDF gratuit | Sans envoi | Tera PDF',
+        pageTitle:   'Convertisseur d\'images en PDF gratuit | Fonctionne hors ligne | Tera PDF',
         ogLocale:    'fr_FR'
       }
     };
@@ -1531,10 +1522,10 @@
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   };
   var saved = localStorage.getItem('theme');
-  // الوضع الداكن مُطبَّق مسبقاً من سكريبت head؛ هنا فقط نضبط الأيقونة ونحفظ الافتراضي
-  if (document.documentElement.classList.contains('dark')) {
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.documentElement.classList.add('dark');
     document.getElementById('darkIcon').className = 'fa-solid fa-sun';
-    if (!saved) localStorage.setItem('theme', 'dark');
   }
 
   /* ── LANGUAGE DROPDOWN ── */
